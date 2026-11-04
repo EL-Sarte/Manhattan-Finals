@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f2">
+    <meta name="description" content="View the status and details of a Suri community report.">
+    <title>Track a Report | Suri</title>
+
+    <!-- Reuse the site's Bootstrap foundation, typography, navigation, and footer. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/track.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="scripts/menu.js" defer></script>
+    <script src="scripts/track.js" defer></script>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md sticky-top bg-light px-3 px-lg-5">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="index.html#home" aria-label="Suri home">
+          <span class="brand-mark" aria-hidden="true">s</span>
+          <span class="brand-name fs-4 fw-bold">suri<span class="brand-period">.</span></span>
+        </a>
+
+        <button class="navbar-toggler" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
+
+        <nav class="collapse navbar-collapse justify-content-md-end" id="site-navigation" aria-label="Main navigation">
+          <div class="navbar-nav align-items-md-center gap-md-5">
+            <a class="nav-link" href="index.html#home">Home</a>
+            <a class="nav-link" href="index.html#how-it-works">About</a>
+            <a class="nav-link" href="index.html#volunteer">Volunteer</a>
+            <a class="btn btn-outline-dark ms-md-2" href="report.html">Report</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="track-hero d-flex align-items-center" aria-labelledby="track-title">
+        <div class="container">
+          <p class="track-eyebrow text-uppercase fw-bold mb-2">Report status</p>
+          <h1 class="track-hero-title mb-2" id="track-title">Track a report</h1>
+          <p class="track-hero-copy mb-0">Follow a report from submission through review and verdict.</p>
+        </div>
+      </section>
+
+      <section class="track-main py-5" aria-label="Report tracking details">
+        <div class="container">
+          <form class="track-search mb-4" id="track-search-form">
+            <label class="form-label" for="track-report-number">Report number</label>
+            <div class="input-group">
+              <input class="form-control" id="track-report-number" name="report-number" type="text" placeholder="e.g. SR-20261025-ABCDE" required>
+              <button class="btn btn-dark" type="submit">Find report</button>
+            </div>
+            <p class="form-text mb-0">Try sample cases: SR-20261025-1001 (pending), SR-20261025-1002 (community review), or SR-20261025-1003 (verdict).</p>
+          </form>
+
+          <p class="track-notice" id="track-notice" role="status" aria-live="polite" hidden></p>
+
+          <article class="track-report" id="track-report" aria-labelledby="track-report-heading" hidden>
+            <header class="track-report-header">
+              <div>
+                <p class="track-category mb-1" id="track-category"></p>
+                <h2 class="track-report-number mb-0" id="track-report-heading"></h2>
+              </div>
+              <span class="track-status" id="track-status"></span>
+            </header>
+
+            <div class="row g-4 py-4">
+              <div class="col-12">
+                <h3 class="track-detail-title">Incident description</h3>
+                <p class="track-detail-value mb-0" id="track-description"></p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="track-detail-title">Sender</h3>
+                <p class="track-detail-value mb-0" id="track-sender"></p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="track-detail-title">Date received</h3>
+                <p class="track-detail-value mb-0" id="track-date-received"></p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="track-detail-title">Location</h3>
+                <p class="track-detail-value mb-0" id="track-location"></p>
+              </div>
+              <div class="col-md-6">
+                <h3 class="track-detail-title">Submitted</h3>
+                <p class="track-detail-value mb-0" id="track-submitted"></p>
+              </div>
+              <div class="col-12" id="track-message-row" hidden>
+                <h3 class="track-detail-title">Submitted message</h3>
+                <p class="track-detail-value track-message mb-0" id="track-message"></p>
+              </div>
+              <div class="col-12" id="track-screenshot-row" hidden>
+                <h3 class="track-detail-title">Screenshot attachment</h3>
+                <p class="track-detail-value mb-0" id="track-screenshot"></p>
+              </div>
+            </div>
+
+            <section class="track-progress" aria-labelledby="track-progress-title">
+              <h3 class="track-progress-title" id="track-progress-title">Progress</h3>
+              <ol class="track-timeline" id="track-timeline"></ol>
+            </section>
+
+            <section class="track-verdict mt-4" id="track-verdict" aria-labelledby="track-verdict-title" hidden>
+              <p class="track-verdict-kicker text-uppercase fw-bold mb-2">Published verdict</p>
+              <h3 class="track-verdict-title mb-2" id="track-verdict-title"></h3>
+              <p class="track-verdict-copy mb-0" id="track-verdict-copy"></p>
+            </section>
+          </article>
+
+          <p class="track-demo-note small mt-4 mb-0">Sample cases load from data/reports.json. Submitted reports are stored only in this browser; reports are not sent to an agency or reviewed by a live AI system.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer py-4">
+      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
+        <p class="footer-copyright mb-0">&copy; 2026 Suri</p>
+        <p class="footer-notice mb-0">This is intended for Web Development (WEBDEVT) demo purposes only.</p>
+      </div>
+    </footer>
+  </body>
+</html>

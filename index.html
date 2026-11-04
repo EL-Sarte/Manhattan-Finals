@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f7f7f2">
+    <meta name="description" content="A community space to check suspicious links and messages before they spread." >
+    <title>Suri | Scam ba 'to?</title>
+
+    <!-- Bootstrap supplies the responsive layout and common interface styles. -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- A display font paired with a readable body font gives the page its own voice. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/index.css">
+    <link rel="stylesheet" href="styles/menu.css">
+    <link rel="stylesheet" href="styles/hero.css">
+    <link rel="stylesheet" href="styles/report-lookup.css">
+    <link rel="stylesheet" href="styles/scams.css">
+    <link rel="stylesheet" href="styles/how-it-works.css">
+    <link rel="stylesheet" href="styles/volunteer.css">
+    <link rel="stylesheet" href="styles/agencies.css">
+    <link rel="stylesheet" href="styles/footer.css">
+    <script src="scripts/hero.js" defer></script>
+    <script src="scripts/menu.js" defer></script>
+    <script src="scripts/report-lookup.js" defer></script>
+    <script src="scripts/volunteer.js" defer></script>
+  </head>
+  <body>
+    <!-- A sticky header keeps the main actions close while the page is in view. -->
+    <header class="navbar navbar-expand-md sticky-top bg-light px-3 px-lg-5">
+      <div class="container-fluid">
+      <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="#home" aria-label="Suri home">
+        <span class="brand-mark" aria-hidden="true">s</span>
+        <span class="brand-name fs-4 fw-bold">suri<span class="brand-period">.</span></span>
+      </a>
+
+      <button class="navbar-toggler" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+        <span class="navbar-toggler-icon" aria-hidden="true"></span>
+      </button>
+
+      <nav class="collapse navbar-collapse justify-content-md-end" id="site-navigation" aria-label="Main navigation">
+        <div class="navbar-nav align-items-md-center gap-md-5">
+          <a class="nav-link active" href="#home" aria-current="page">Home</a>
+          <a class="nav-link" href="#how-it-works">About</a>
+          <a class="nav-link" href="#volunteer">Volunteer</a>
+          <a class="btn btn-outline-dark ms-md-2" href="report.html">Report <span aria-hidden="true">↗</span></a>
+        </div>
+      </nav>
+      </div>
+    </header>
+
+    <main>
+      <!-- The hero fills the space below the header and uses a photo selected in scripts/hero.js. -->
+      <section class="hero d-flex align-items-center position-relative overflow-hidden" id="home" aria-labelledby="hero-title">
+        <div class="container position-relative">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-8 hero-content">
+              <p class="hero-eyebrow d-flex align-items-center gap-2 fw-bold mb-3"><span class="eyebrow-dot" aria-hidden="true"></span> Scam ba 'to?</p>
+              <h1 class="hero-title fw-semibold mb-0" id="hero-title">May kahina-hinala?<br><span>Ipa-suri natin.</span></h1>
+              <p class="hero-description lead my-4">A suspicious link or message can reach anyone. Share it with the community and help everyone stay one step ahead.</p>
+              <a class="btn btn-primary d-inline-flex align-items-center gap-4" href="report.html">Report something suspicious <span aria-hidden="true">↗</span></a>
+              <p class="hero-note small mt-4 mb-0"><span aria-hidden="true">✳</span> Check first. Share smarter.</p>
+            </div>
+            <div class="col-lg-4">
+              <aside class="report-lookup" id="report" aria-labelledby="report-lookup-title">
+                <h2 class="report-lookup-title" id="report-lookup-title">Already submitted a report?</h2>
+                <p class="report-lookup-copy">Enter your report number to check its status.</p>
+                <form id="report-lookup-form">
+                  <label class="form-label" for="report-number">Report number</label>
+                  <input class="form-control mb-3" id="report-number" name="report-number" type="text" placeholder="e.g. SR-2026-001" autocomplete="off" required>
+                  <button class="btn btn-primary w-100" type="submit">Check report status <span aria-hidden="true">→</span></button>
+                  <p class="report-lookup-feedback small mt-3 mb-0" id="report-lookup-feedback" role="status" aria-live="polite" hidden></p>
+                </form>
+              </aside>
+            </div>
+          </div>
+        </div>
+        <p class="photo-credit position-absolute bottom-0 end-0 small m-3">A little caution goes a long way.</p>
+      </section>
+
+      <!-- Static cards introduce common scam categories without needing JavaScript. -->
+      <section class="scam-types py-5" id="scam-types" aria-labelledby="scam-types-title">
+        <div class="container py-lg-4">
+          <div class="scam-types-heading mb-4 mb-lg-5">
+            <p class="scam-types-kicker text-uppercase fw-bold mb-2">Spot the pattern</p>
+            <h2 class="scam-types-title mb-3" id="scam-types-title">Scams come in different forms.</h2>
+            <p class="scam-types-intro mb-0">Knowing the common tactics can make suspicious messages easier to recognize.</p>
+          </div>
+
+          <div class="row g-3 g-lg-4">
+            <div class="col-md-6 col-lg-4">
+              <article class="scam-card h-100">
+                <span class="scam-icon" aria-hidden="true"><i class="bi bi-envelope-exclamation"></i></span>
+                <h3 class="scam-card-title">Phishing</h3>
+                <p class="scam-card-description mb-0">Fake emails and websites imitate trusted organizations to steal passwords, payment details, or personal information.</p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="scam-card h-100">
+                <span class="scam-icon" aria-hidden="true"><i class="bi bi-qr-code"></i></span>
+                <h3 class="scam-card-title">QRishing</h3>
+                <p class="scam-card-description mb-0">A malicious QR code can send you to a fake sign-in or payment page designed to capture your information.</p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="scam-card h-100">
+                <span class="scam-icon" aria-hidden="true"><i class="bi bi-chat-square-dots"></i></span>
+                <h3 class="scam-card-title">Smishing</h3>
+                <p class="scam-card-description mb-0">Text messages use urgent warnings or rewards to get you to tap a link or share a verification code.</p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="scam-card h-100">
+                <span class="scam-icon" aria-hidden="true"><i class="bi bi-telephone-inbound"></i></span>
+                <h3 class="scam-card-title">Vishing</h3>
+                <p class="scam-card-description mb-0">A caller impersonates a bank or agency and pressures you to reveal a one-time password or send money.</p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="scam-card h-100">
+                <span class="scam-icon" aria-hidden="true"><i class="bi bi-bag-x"></i></span>
+                <h3 class="scam-card-title">Fake online shops</h3>
+                <p class="scam-card-description mb-0">Fraudulent listings lure shoppers with unusually low prices, then take payment without delivering the item.</p>
+              </article>
+            </div>
+            <div class="col-md-6 col-lg-4">
+              <article class="scam-card h-100">
+                <span class="scam-icon" aria-hidden="true"><i class="bi bi-person-badge"></i></span>
+                <h3 class="scam-card-title">Impersonation</h3>
+                <p class="scam-card-description mb-0">Someone pretends to be a friend, delivery service, or public official to ask for money or private details.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works py-5" id="how-it-works" aria-labelledby="how-it-works-title">
+        <div class="container py-lg-4">
+          <div class="how-heading mb-5">
+            <p class="how-kicker text-uppercase fw-bold mb-2">From submission to results</p>
+            <h2 class="how-title mb-3" id="how-it-works-title">How it works</h2>
+            <p class="how-intro mb-0">Submit suspicious content, get an AI-assisted analysis, and review the findings.</p>
+          </div>
+
+          <div class="how-steps row g-4 position-relative">
+            <div class="col-md-4">
+              <article class="how-step">
+                <span class="step-number">01</span>
+                <h3 class="step-title">Submit</h3>
+                <p class="step-description mb-0">Send a suspicious link or text message, or upload a screenshot of what you received.</p>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="how-step">
+                <span class="step-number">02</span>
+                <h3 class="step-title">Analyze</h3>
+                <p class="step-description mb-0">AI examines the submitted text or screenshot and compares it with known and similar reports in the database.</p>
+              </article>
+            </div>
+            <div class="col-md-4">
+              <article class="how-step">
+                <span class="step-number">03</span>
+                <h3 class="step-title">Review</h3>
+                <p class="step-description mb-0">Read the analysis, see relevant matches, and follow the suggested next steps.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="volunteer-section position-relative d-flex align-items-center overflow-hidden" id="volunteer" aria-labelledby="volunteer-title">
+        <div class="volunteer-parallax" aria-hidden="true"></div>
+        <div class="volunteer-shade" aria-hidden="true"></div>
+        <div class="container volunteer-content">
+          <div class="row">
+            <div class="col-lg-8 col-xl-7">
+              <p class="volunteer-eyebrow text-uppercase fw-bold mb-3">Community review</p>
+              <h2 class="volunteer-title mb-3" id="volunteer-title">Some reports need a human verdict.</h2>
+              <p class="volunteer-description mb-4">When AI cannot confidently tell whether a report is a scam, volunteer reviewers examine its evidence. Once reviewers agree, the verdict is published for that report.</p>
+              <button class="btn btn-primary d-inline-flex align-items-center gap-3" id="volunteer-button" type="button">Become a volunteer <span aria-hidden="true">↗</span></button>
+              <p class="volunteer-feedback small mt-3 mb-0" id="volunteer-feedback" role="status" aria-live="polite" hidden></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="agency-directory py-5" id="agencies" aria-labelledby="agency-directory-title">
+        <div class="container py-lg-4">
+          <div class="agency-heading mb-4 mb-lg-5">
+            <p class="agency-kicker text-uppercase fw-bold mb-2">Official support</p>
+            <h2 class="agency-title mb-3" id="agency-directory-title">Contact a Philippine cybercrime agency.</h2>
+            <p class="agency-intro mb-0">For formal complaints or assistance, use an agency's official channels and follow its current instructions.</p>
+          </div>
+
+          <div class="row g-3 g-lg-4">
+            <div class="col-md-6 col-xl-3">
+              <article class="agency-card h-100">
+                <span class="agency-icon" aria-hidden="true"><i class="bi bi-building-lock"></i></span>
+                <h3 class="agency-card-title">DICT</h3>
+                <p class="agency-card-description">The Department of Information and Communications Technology leads national ICT and cybersecurity programs. Check its official channels for guidance and advisories.</p>
+                <a class="agency-link" href="https://dict.gov.ph/" target="_blank" rel="noopener noreferrer">Official DICT website <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <article class="agency-card h-100">
+                <span class="agency-icon" aria-hidden="true"><i class="bi bi-search"></i></span>
+                <h3 class="agency-card-title">NBI Cybercrime Division</h3>
+                <p class="agency-card-description">The National Bureau of Investigation handles cybercrime investigations and digital evidence. Check its official directory for current procedures.</p>
+                <a class="agency-link" href="https://nbi.gov.ph/overview/divisions/" target="_blank" rel="noopener noreferrer">NBI divisions and services <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <article class="agency-card h-100">
+                <span class="agency-icon" aria-hidden="true"><i class="bi bi-shield-check"></i></span>
+                <h3 class="agency-card-title">PNP Anti-Cybercrime Group</h3>
+                <p class="agency-card-description">The PNP ACG investigates cybercrime complaints and provides law-enforcement assistance for online offenses.</p>
+                <a class="agency-link" href="https://acg.pnp.gov.ph/" target="_blank" rel="noopener noreferrer">Official PNP ACG website <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+            <div class="col-md-6 col-xl-3">
+              <article class="agency-card h-100">
+                <span class="agency-icon" aria-hidden="true"><i class="bi bi-diagram-3"></i></span>
+                <h3 class="agency-card-title">CICC</h3>
+                <p class="agency-card-description">The Cybercrime Investigation and Coordinating Center coordinates the government's response to cybercrime and online scams.</p>
+                <a class="agency-link" href="https://cicc.gov.ph/" target="_blank" rel="noopener noreferrer">Official CICC website <span aria-hidden="true">↗</span></a>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer py-4">
+      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
+        <p class="footer-copyright mb-0">&copy; 2026 Suri</p>
+        <p class="footer-notice mb-0">This is intended for Web Development (WEBDEVT) demo purposes only.</p>
+      </div>
+    </footer>
+  </body>
+</html>
