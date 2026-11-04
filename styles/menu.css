@@ -1,0 +1,28 @@
+/* Custom navbar details complement Bootstrap's responsive navigation classes. */
+.navbar {
+  min-height: 76px;
+}
+
+.brand-mark {
+  display: grid;
+  width: 34px;
+  aspect-ratio: 1;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--green);
+  font: 700 23px/1 var(--display-font);
+}
+
+.brand-name {
+  font-family: var(--display-font);
+}
+
+.brand-period {
+  color: var(--coral);
+}
+
+@media (max-width: 767.98px) {
+  .navbar {
+    min-height: 68px;
+  }
+}

@@ -1,0 +1,74 @@
+/* Scam category cards use a quieter surface to separate learning content from the hero. */
+.scam-types {
+  background: #f0f3ed;
+}
+
+.scam-types-heading {
+  max-width: 640px;
+}
+
+.scam-types-kicker {
+  color: #71824b;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+}
+
+.scam-types-title {
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.scam-types-intro {
+  color: #59635e;
+  line-height: 1.7;
+}
+
+.scam-card {
+  padding: 1.5rem;
+  border: 1px solid #e0e5dc;
+  border-radius: 4px;
+  background: #fff;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.scam-card:hover {
+  transform: translateY(-3px);
+  border-color: #b5c392;
+}
+
+.scam-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.25rem;
+  place-items: center;
+  border-radius: 4px;
+  background: #eaf1db;
+  color: #314128;
+  font-size: 1.25rem;
+}
+
+.scam-card-title {
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: 1.2rem;
+}
+
+.scam-card-description {
+  color: #59635e;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scam-card {
+    transition: none;
+  }
+
+  .scam-card:hover {
+    transform: none;
+  }
+}

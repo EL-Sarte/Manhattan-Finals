@@ -1,0 +1,78 @@
+/* Agency cards provide official starting points for people seeking direct assistance. */
+.agency-directory {
+  background: #f0f3ed;
+}
+
+.agency-heading {
+  max-width: 700px;
+}
+
+.agency-kicker {
+  color: #71824b;
+  font-size: 0.75rem;
+}
+
+.agency-title {
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.agency-intro,
+.agency-card-description {
+  color: #59635e;
+  line-height: 1.7;
+}
+
+.agency-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  border: 1px solid #e0e5dc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.agency-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 1.25rem;
+  place-items: center;
+  border-radius: 4px;
+  background: #eaf1db;
+  color: #314128;
+  font-size: 1.25rem;
+}
+
+.agency-card-title {
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: 1.2rem;
+}
+
+.agency-card-description {
+  flex-grow: 1;
+  font-size: 0.95rem;
+}
+
+.agency-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: #314128;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-color: #b5c392;
+  text-underline-offset: 0.2em;
+}
+
+.agency-link:hover {
+  color: #182722;
+  text-decoration-color: currentColor;
+}

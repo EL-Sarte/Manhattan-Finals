@@ -1,0 +1,11 @@
+.site-footer {
+  border-top: 1px solid #e3e7df;
+  background: #f7f7f2;
+  color: #59635e;
+  font-size: 0.85rem;
+}
+
+.footer-copyright {
+  color: var(--ink);
+  font-weight: 600;
+}

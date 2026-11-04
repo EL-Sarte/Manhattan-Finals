@@ -1,0 +1,101 @@
+/* The short report heading sits above the form as its own viewport-height section. */
+.report-hero {
+  position: relative;
+  min-height: 25svh;
+  isolation: isolate;
+  padding-block: 2rem;
+  background-color: #293c35;
+  background-image: var(--hero-image);
+  background-position: center 48%;
+  background-size: cover;
+  color: #fff;
+}
+
+.report-hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(15 29 25 / 82%), rgb(15 29 25 / 56%) 55%, rgb(15 29 25 / 20%));
+  content: "";
+}
+
+.report-eyebrow {
+  color: var(--green);
+  font-size: 0.75rem;
+}
+
+.report-hero-title,
+.report-form-title {
+  color: var(--ink);
+  font-family: var(--display-font);
+}
+
+.report-hero-title {
+  color: #fff;
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.08;
+}
+
+.report-hero-copy {
+  max-width: 620px;
+  color: rgb(255 255 255 / 86%);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+.report-form-intro {
+  max-width: 720px;
+}
+
+.report-form-title {
+  font-size: clamp(1.6rem, 3vw, 2.25rem);
+}
+
+.report-form {
+  max-width: 900px;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid #e0e5dc;
+  border-radius: 4px;
+}
+
+.report-form .form-label,
+.location-fieldset legend,
+.privacy-agreement legend {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.report-form .form-control,
+.report-form .form-select {
+  min-height: 48px;
+}
+
+.report-form textarea.form-control {
+  min-height: 120px;
+}
+
+.location-mode .btn {
+  min-height: 44px;
+}
+
+.report-submit {
+  min-height: 48px;
+  padding-inline: 1.25rem;
+}
+
+.report-form-status {
+  color: #314128;
+}
+
+@media (max-width: 575.98px) {
+  .location-mode {
+    display: flex;
+    width: 100%;
+  }
+
+  .location-mode .btn {
+    flex: 1;
+    padding-inline: 0.5rem;
+    font-size: 0.9rem;
+  }
+}

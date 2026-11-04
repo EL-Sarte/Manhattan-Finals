@@ -1,0 +1,108 @@
+/* Hero-only layout, contrast, and button colors. */
+.hero {
+  min-height: calc(100svh - 76px);
+  isolation: isolate;
+  background: #293c35 var(--hero-image) center 48% / cover;
+  color: white;
+}
+
+.hero::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(15 29 25 / 88%), rgb(15 29 25 / 68%) 43%, rgb(15 29 25 / 14%)), linear-gradient(0deg, rgb(15 29 25 / 25%), transparent 36%);
+  content: "";
+}
+
+.hero-content {
+  padding-block: clamp(4.75rem, 11vh, 7.75rem);
+  animation: arrive 650ms ease-out both;
+}
+
+.hero-eyebrow {
+  color: var(--green);
+  font-size: 14px;
+}
+
+.eyebrow-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--coral);
+}
+
+.hero-title {
+  max-width: 900px;
+  font-family: var(--display-font);
+  font-size: clamp(2.8rem, 6.5vw, 5.125rem);
+  line-height: 1.04;
+}
+
+.hero-title span {
+  color: var(--green);
+}
+
+.hero-description {
+  max-width: 500px;
+  color: rgb(255 255 255 / 84%);
+  line-height: 1.75;
+}
+
+.btn-primary {
+  --bs-btn-color: var(--ink);
+  --bs-btn-bg: var(--green);
+  --bs-btn-border-color: var(--green);
+  --bs-btn-hover-color: var(--ink);
+  --bs-btn-hover-bg: #d8ff75;
+  --bs-btn-hover-border-color: #d8ff75;
+}
+
+.hero-note {
+  color: rgb(255 255 255 / 74%);
+}
+
+.hero-note span {
+  color: var(--coral);
+  font-size: 16px;
+}
+
+.photo-credit {
+  color: rgb(255 255 255 / 72%);
+}
+
+@keyframes arrive {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero {
+    min-height: calc(100svh - 68px);
+    background-position: 58% center;
+  }
+
+  .hero::before {
+    background: linear-gradient(90deg, rgb(15 29 25 / 84%), rgb(15 29 25 / 43%)), linear-gradient(0deg, rgb(15 29 25 / 30%), transparent 50%);
+  }
+
+  .hero-content {
+    padding-block: 4.75rem 1rem;
+  }
+
+  .hero-description {
+    font-size: 1rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-content {
+    animation: none;
+  }
+}

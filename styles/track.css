@@ -1,0 +1,241 @@
+/* Track page header and report summary use the shared Suri colors and type. */
+.track-hero {
+  min-height: 25svh;
+  padding-block: 2rem;
+  background: #eaf1db;
+}
+
+.track-eyebrow {
+  color: #52643a;
+  font-size: 0.75rem;
+}
+
+.track-hero-title,
+.track-report-number,
+.track-progress-title,
+.track-verdict-title {
+  color: var(--ink);
+  font-family: var(--display-font);
+}
+
+.track-hero-title {
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.08;
+}
+
+.track-hero-copy,
+.track-demo-note {
+  color: #59635e;
+}
+
+.track-search {
+  max-width: 720px;
+}
+
+.track-search .form-control,
+.track-search .btn {
+  min-height: 48px;
+}
+
+.track-notice {
+  max-width: 900px;
+  padding: 1rem 1.25rem;
+  border-left: 4px solid var(--coral);
+  background: #fff2ef;
+  color: var(--ink);
+}
+
+.track-report {
+  max-width: 1000px;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid #e0e5dc;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.track-report-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e7eae3;
+}
+
+.track-category,
+.track-verdict-kicker {
+  color: #71824b;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.track-report-number {
+  overflow-wrap: anywhere;
+  font-size: clamp(1.35rem, 3vw, 1.8rem);
+}
+
+.track-status {
+  flex: 0 0 auto;
+  padding: 0.45rem 0.75rem;
+  border-radius: 3px;
+  background: #fff1d6;
+  color: #704c12;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.track-status.is-verdict {
+  background: #eaf1db;
+  color: #314128;
+}
+
+.track-detail-title {
+  margin-bottom: 0.35rem;
+  color: #59635e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.track-detail-value {
+  color: var(--ink);
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.track-message {
+  white-space: pre-wrap;
+}
+
+.track-progress {
+  padding-top: 1.5rem;
+  border-top: 1px solid #e7eae3;
+}
+
+.track-progress-title {
+  margin-bottom: 2rem;
+  font-size: 1.4rem;
+}
+
+.track-timeline {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.track-timeline::before {
+  position: absolute;
+  top: 19px;
+  right: 12.5%;
+  left: 12.5%;
+  height: 2px;
+  background: #dfe6d2;
+  content: "";
+}
+
+.track-step {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.track-step-marker {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto 0.9rem;
+  place-items: center;
+  border: 2px solid #d5dbcf;
+  border-radius: 50%;
+  background: #fff;
+  color: #59635e;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.track-step.is-complete .track-step-marker {
+  border-color: #314128;
+  background: var(--green);
+  color: var(--ink);
+}
+
+.track-step.is-current .track-step-marker {
+  border-color: #182722;
+  background: #182722;
+  color: #fff;
+  box-shadow: 0 0 0 4px #e6edda;
+}
+
+.track-step-title {
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: 1rem;
+}
+
+.track-step-copy {
+  margin: 0 auto;
+  color: #59635e;
+  font-size: 0.85rem;
+  line-height: 1.55;
+}
+
+.track-step.is-upcoming .track-step-copy {
+  color: #737b75;
+}
+
+.track-verdict {
+  padding: 1.5rem;
+  border-left: 4px solid #71824b;
+  background: #f0f3ed;
+}
+
+.track-verdict-title {
+  font-size: 1.5rem;
+}
+
+.track-verdict-copy {
+  color: #59635e;
+  line-height: 1.65;
+}
+
+@media (max-width: 767.98px) {
+  .track-report-header {
+    flex-direction: column;
+  }
+
+  .track-timeline {
+    display: block;
+    padding-left: 0;
+  }
+
+  .track-timeline::before {
+    top: 20px;
+    right: auto;
+    bottom: 20px;
+    left: 19px;
+    width: 2px;
+    height: auto;
+  }
+
+  .track-step {
+    display: grid;
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 1rem;
+    min-height: 104px;
+    text-align: left;
+  }
+
+  .track-step-marker {
+    margin: 0;
+  }
+
+  .track-step-copy {
+    margin: 0;
+  }
+}

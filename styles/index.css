@@ -1,0 +1,21 @@
+/* Shared design values and page-wide behavior belong to the homepage. */
+:root {
+  --ink: #182722;
+  --paper: #f7f7f2;
+  --green: #c9f15d;
+  --coral: #ff7059;
+  --display-font: "Space Grotesk", sans-serif;
+  --bs-body-font-family: "DM Sans", sans-serif;
+  --bs-body-color: var(--ink);
+  --bs-body-bg: var(--paper);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}

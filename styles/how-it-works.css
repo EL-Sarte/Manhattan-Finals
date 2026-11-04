@@ -1,0 +1,94 @@
+/* A connected sequence turns the three steps into one easy-to-scan process. */
+.how-it-works {
+  background: #fff;
+}
+
+.how-heading {
+  max-width: 640px;
+}
+
+.how-kicker {
+  color: #71824b;
+  font-size: 0.75rem;
+}
+
+.how-title {
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+}
+
+.how-intro,
+.step-description {
+  color: #59635e;
+  line-height: 1.7;
+}
+
+.how-steps::before {
+  position: absolute;
+  z-index: 0;
+  top: 47px;
+  right: 16.6667%;
+  left: 16.6667%;
+  height: 2px;
+  background: #dfe6d2;
+  content: "";
+}
+
+.how-step {
+  position: relative;
+  z-index: 1;
+  background: #fff;
+  text-align: center;
+}
+
+.step-number {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 1.25rem;
+  position: relative;
+  z-index: 1;
+  place-items: center;
+  border: 2px solid #314128;
+  border-radius: 50%;
+  background: var(--green);
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.step-title {
+  margin-bottom: 0.5rem;
+  color: var(--ink);
+  font-family: var(--display-font);
+  font-size: 1.25rem;
+}
+
+.step-description {
+  max-width: 320px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media (max-width: 767.98px) {
+  .how-heading {
+    margin-bottom: 2rem !important;
+  }
+
+  .how-steps {
+    row-gap: 2rem !important;
+  }
+
+  .how-steps::before {
+    top: 48px;
+    right: auto;
+    bottom: 24px;
+    left: 50%;
+    width: 2px;
+    height: auto;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,68 @@
+/* The script pins this viewport-height image while the section scrolls past. */
+.volunteer-section {
+  min-height: 55svh;
+  isolation: isolate;
+  background-color: #263b32;
+  color: #fff;
+}
+
+.volunteer-parallax {
+  position: absolute;
+  z-index: -1;
+  inset: 0 0 auto;
+  height: 100svh;
+  background: url("https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?auto=format&fit=crop&w=2000&q=85") center 45% / cover;
+  will-change: transform;
+}
+
+.volunteer-shade {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: linear-gradient(90deg, rgb(13 29 23 / 88%), rgb(13 29 23 / 66%) 52%, rgb(13 29 23 / 20%));
+}
+
+.volunteer-content {
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(3.5rem, 8vh, 6rem);
+}
+
+.volunteer-eyebrow {
+  color: var(--green);
+  font-size: 0.78rem;
+}
+
+.volunteer-title {
+  max-width: 700px;
+  font-family: var(--display-font);
+  font-size: clamp(2.25rem, 4.5vw, 4rem);
+  line-height: 1.08;
+}
+
+.volunteer-description {
+  max-width: 620px;
+  color: rgb(255 255 255 / 86%);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.volunteer-feedback {
+  color: rgb(255 255 255 / 86%);
+}
+
+@media (max-width: 767.98px) {
+  .volunteer-section {
+    min-height: 55svh;
+  }
+
+  .volunteer-parallax {
+    background-position: 58% center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .volunteer-parallax {
+    will-change: auto;
+  }
+}
