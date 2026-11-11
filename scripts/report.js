@@ -1,123 +1,109 @@
 const reportForm = document.querySelector("#report-form");
-const receivedDateInput = document.querySelector("#date-received");
-const screenshotInput = document.querySelector("#report-screenshot");
-const locationTextMode = document.querySelector("#location-mode-text");
-const locationMapMode = document.querySelector("#location-mode-map");
-const locationTextPanel = document.querySelector("#location-text-panel");
-const locationMapPanel = document.querySelector("#location-map-panel");
-const locationTextInput = document.querySelector("#location-text");
-const locationMapInput = document.querySelector("#location-map");
+const categorySelect = document.querySelector("#report-category");
+const detailSelect = document.querySelector("#report-detail");
+const descriptionInput = document.querySelector("#incident-description");
+const wordCount = document.querySelector("#word-count");
+const observedInput = document.querySelector("#date-observed");
+const contactInput = document.querySelector("#contact-number");
+const emailInput = document.querySelector("#email-address");
+const methodSelect = document.querySelector("#contact-method");
+const photoInput = document.querySelector("#report-photo");
 const reportFormStatus = document.querySelector("#report-form-status");
-const maxScreenshotSize = 10 * 1024 * 1024;
-const reportsStorageKey = "suriReports";
+const reportsStorageKey = "homelinkReports";
+const maxPhotoSize = 5 * 1024 * 1024;
+const maxWords = 500;
 
-// `Date` gets the current time. Adjust it to local time before filling in today's date.
-const localToday = new Date();
-localToday.setMinutes(localToday.getMinutes() - localToday.getTimezoneOffset());
-const todayValue = localToday.toISOString().slice(0, 10);
-receivedDateInput.max = todayValue;
-receivedDateInput.value = todayValue;
-
-// Only the selected location method is visible and required.
-// This function reads which option is checked, then updates the matching form fields.
-const updateLocationMode = () => {
-  const useMap = locationMapMode.checked;
-  locationTextPanel.hidden = useMap;
-  locationMapPanel.hidden = !useMap;
-  locationTextInput.disabled = useMap;
-  locationTextInput.required = !useMap;
-  locationMapInput.disabled = !useMap;
-  locationMapInput.required = useMap;
-  // `setCustomValidity` sets a browser validation message; an empty string clears it.
-  locationTextInput.setCustomValidity("");
-  locationMapInput.setCustomValidity("");
+const problemTypes = {
+  "Maintenance": ["Plumbing or water leak", "Electrical hazard", "Broken light", "Damaged door or gate", "Elevator", "Other maintenance"],
+  "Pests": ["Rats", "Cockroaches", "Termites", "Stray animals", "Other pests"],
+  "Documentation": ["Permit or clearance", "Access card or sticker", "Billing or records", "Other document"],
+  "Community members": ["Noise", "Parking violation", "Disturbance", "Other concern"]
 };
 
-// A `change` event runs when a form control's selected value changes.
-locationTextMode.addEventListener("change", updateLocationMode);
-locationMapMode.addEventListener("change", updateLocationMode);
+categorySelect.addEventListener("change", () => {
+  const types = problemTypes[categorySelect.value] || [];
+  detailSelect.replaceChildren();
+  detailSelect.append(new Option(types.length ? "Choose one" : "Choose a category first", ""));
+  types.forEach((type) => detailSelect.append(new Option(type, type)));
+  detailSelect.disabled = types.length === 0;
+});
 
-// This function returns true for valid coordinates or a Google Maps link, and false otherwise.
-const isValidMapLocation = (value) => {
-  const trimmedValue = value.trim();
-  const coordinates = trimmedValue.match(/^(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)$/);
+const countWords = (text) => (text.trim() ? text.trim().split(/\s+/).length : 0);
 
-  if (coordinates) {
-    const latitude = Number(coordinates[1]);
-    const longitude = Number(coordinates[2]);
-    return latitude >= -90 && latitude <= 90 && longitude >= -180 && longitude <= 180;
-  }
+descriptionInput.addEventListener("input", () => {
+  wordCount.textContent = `${countWords(descriptionInput.value)} of ${maxWords} words. Do not include passwords or private ID numbers.`;
+});
 
-  return /^https?:\/\/(?:maps\.app\.goo\.gl|maps\.google\.[a-z.]+|www\.google\.[a-z.]+\/maps)\//i.test(trimmedValue);
-};
+const now = new Date();
+now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+const nowValue = now.toISOString().slice(0, 16);
+observedInput.max = nowValue;
+
+const presetCategory = new URLSearchParams(window.location.search).get("category");
+if (presetCategory && problemTypes[presetCategory]) {
+  categorySelect.value = presetCategory;
+  categorySelect.dispatchEvent(new Event("change"));
+}
 
 reportForm.addEventListener("submit", (event) => {
-  // Handle the form with JavaScript instead of letting the browser reload the page.
   event.preventDefault();
   reportFormStatus.hidden = true;
 
-  receivedDateInput.setCustomValidity(
-    receivedDateInput.value > todayValue ? "The received date cannot be in the future." : ""
-  );
+  const cleanNumber = contactInput.value.replace(/[\s-]/g, "");
+  contactInput.setCustomValidity(/^(\+63|0)9\d{9}$/.test(cleanNumber) ? "" : "Invalid number");
 
-  // `files` contains the files selected in a file input; `[0]` is the first one.
-  const screenshot = screenshotInput.files[0];
-  const screenshotIsValid = !screenshot || (
-    // `includes` checks whether the allowed file-type list contains this file's type.
-    ["image/png", "image/jpeg", "image/webp"].includes(screenshot.type) &&
-    screenshot.size <= maxScreenshotSize
-  );
-  screenshotInput.setCustomValidity(screenshotIsValid ? "" : "Choose a PNG, JPG, or WebP image no larger than 10 MB.");
+  emailInput.required = methodSelect.value === "Email";
 
-  if (locationMapMode.checked && locationMapInput.value.trim()) {
-    locationMapInput.setCustomValidity(
-      isValidMapLocation(locationMapInput.value) ? "" : "Enter a Google Maps link or valid latitude and longitude."
-    );
-  } else {
-    locationMapInput.setCustomValidity("");
-  }
+  const words = countWords(descriptionInput.value);
+  descriptionInput.setCustomValidity(words >= 1 && words <= maxWords ? "" : "Invalid description");
+
+  observedInput.setCustomValidity(observedInput.value && observedInput.value > nowValue ? "Future date" : "");
+
+  const photo = photoInput.files[0];
+  const photoIsValid = !photo || (["image/png", "image/jpeg"].includes(photo.type) && photo.size <= maxPhotoSize);
+  photoInput.setCustomValidity(photoIsValid ? "" : "Invalid photo");
 
   reportForm.classList.add("was-validated");
 
-  // `reportValidity` asks the browser to check the form and show any validation messages.
-  if (!reportForm.reportValidity()) {
+  if (!reportForm.checkValidity()) {
+    const problemFields = reportForm.querySelectorAll("input:invalid, select:invalid, textarea:invalid");
+    const problems = problemFields.length;
+    reportFormStatus.textContent = `Please fix ${problems} field${problems === 1 ? "" : "s"} marked with a warning before submitting.`;
+    reportFormStatus.hidden = false;
+    problemFields[0].focus();
     return;
   }
 
-  const reportNumber = `SR-${todayValue.replace(/-/g, "")}-${Date.now().toString(36).slice(-5).toUpperCase()}`;
-  const location = locationMapMode.checked ? locationMapInput.value.trim() : locationTextInput.value.trim();
-  // An object groups the report's related information into named properties.
+  const reportNumber = `HL-2026-${Date.now().toString(36).slice(-4).toUpperCase()}`;
   const report = {
     reportNumber,
-    status: "pending",
-    category: reportForm.elements.category.selectedOptions[0].textContent,
-    description: document.querySelector("#incident-description").value.trim(),
-    suspiciousText: document.querySelector("#suspicious-text").value.trim(),
-    screenshotName: screenshot ? screenshot.name : "",
-    sender: document.querySelector("#sender").value.trim(),
-    receivedDate: receivedDateInput.value,
-    email: document.querySelector("#email-address").value.trim(),
-    locationMode: locationMapMode.checked ? "map" : "text",
-    location,
-    submittedAt: new Date().toISOString(),
-    verdict: ""
+    status: "submitted",
+    name: document.querySelector("#reporter-name").value.trim(),
+    contact: cleanNumber,
+    email: emailInput.value.trim(),
+    contactMethod: methodSelect.value,
+    needsInterpreter: document.querySelector("#interpreter").checked,
+    category: categorySelect.value,
+    detail: detailSelect.value,
+    description: descriptionInput.value.trim(),
+    observedAt: observedInput.value,
+    area: document.querySelector("#residence-area").value,
+    location: document.querySelector("#location-text").value.trim(),
+    photoName: photo ? photo.name : "",
+    submittedAt: new Date().toISOString()
   };
 
-  // `try` lets us handle errors that may occur while reading or writing browser storage.
   try {
-    // `JSON.parse` converts saved JSON text into JavaScript data; `JSON.stringify` converts it back.
     const savedReports = JSON.parse(localStorage.getItem(reportsStorageKey) || "{}");
     savedReports[reportNumber] = report;
     localStorage.setItem(reportsStorageKey, JSON.stringify(savedReports));
-    window.location.href = `track.html?report=${encodeURIComponent(reportNumber)}`;
-  // `catch` runs if storage access or JSON conversion fails.
+    window.location.href = `confirmation.html?report=${encodeURIComponent(reportNumber)}`;
   } catch {
-    reportFormStatus.textContent = "This browser could not save the report locally. Check browser storage settings and try again.";
+    reportFormStatus.textContent = "This browser could not save the report. Check your storage settings and try again.";
     reportFormStatus.hidden = false;
   }
 });
 
 reportForm.addEventListener("input", (event) => {
-  // Clear a previous custom error as soon as the user edits that field.
   event.target.setCustomValidity("");
 });

@@ -1,174 +1,203 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f7f2">
-    <meta name="description" content="Report a suspicious link, message, or online incident to the Suri community.">
-    <title>Submit a Report | Suri</title>
+    <meta name="theme-color" content="#24473a">
+    <meta name="description" content="Submit a maintenance, pest, documentation, or community concern to your residential administrators.">
+    <title>Report an issue | HomeLink</title>
 
-    <!-- Shared Bootstrap styles keep this page consistent with the homepage. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/menu.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/report.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <script src="scripts/hero.js" defer></script>
     <script src="scripts/menu.js" defer></script>
     <script src="scripts/report.js" defer></script>
-  </head>
-  <body>
-    <header class="navbar navbar-expand-md sticky-top bg-light px-3 px-lg-5">
-      <div class="container-fluid">
-        <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="index.html#home" aria-label="Suri home">
-          <span class="brand-mark" aria-hidden="true">s</span>
-          <span class="brand-name fs-4 fw-bold">suri<span class="brand-period">.</span></span>
-        </a>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
-        <button class="navbar-toggler" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
-          <span class="navbar-toggler-icon" aria-hidden="true"></span>
-        </button>
-
-        <nav class="collapse navbar-collapse justify-content-md-end" id="site-navigation" aria-label="Main navigation">
-          <div class="navbar-nav align-items-md-center gap-md-5">
-            <a class="nav-link" href="index.html#home">Home</a>
-            <a class="nav-link" href="index.html#how-it-works">About</a>
-            <a class="nav-link" href="index.html#volunteer">Volunteer</a>
-            <a class="btn btn-outline-dark ms-md-2 active" href="report.html" aria-current="page">Report</a>
-          </div>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md" aria-label="Main">
+            <a class="navbar-brand" href="index.html" aria-label="HomeLink home page">
+                <span class="brand-mark" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+                <span class="brand-name">homelink<span class="brand-period">.</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
+            </button>
+            <ul class="navbar-nav navbar-collapse collapse ms-md-auto justify-content-md-end align-items-md-center gap-md-1" id="site-navigation">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#how-it-works">How it works</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+                <li class="nav-item"><a class="btn btn-clay ms-md-2" href="report.html" aria-current="page">Report an issue</a></li>
+            </ul>
         </nav>
-      </div>
     </header>
 
-    <main>
-      <section class="report-hero d-flex align-items-center" aria-labelledby="report-title">
-        <div class="container">
-          <p class="report-eyebrow text-uppercase fw-bold mb-2">Community report</p>
-          <h1 class="report-hero-title mb-2" id="report-title">Report something suspicious</h1>
-          <p class="report-hero-copy mb-0">Share the details so the community can review what happened.</p>
-        </div>
-      </section>
+    <main id="main">
+        <header class="page-band">
+            <p class="page-kicker">Submit a report</p>
+            <h1 class="page-title" id="report-title">Report an issue</h1>
+            <p class="page-copy">Write down what is going on. The more detail you give, the faster the administrators can act. Fields marked * are required.</p>
+        </header>
 
-      <section class="report-form-section py-5" aria-labelledby="report-form-title">
-        <div class="container">
-          <div class="report-form-intro mb-4">
-            <h2 class="report-form-title mb-2" id="report-form-title">Tell us what happened</h2>
-            <p class="text-secondary mb-0">Fields marked with <span aria-hidden="true">*</span> are required.</p>
-          </div>
+        <section class="wrap report-layout" aria-labelledby="report-title">
+            <form id="report-form" aria-labelledby="report-title" novalidate>
 
-          <form class="report-form bg-white" id="report-form" novalidate>
-            <div class="row g-4">
-              <div class="col-12">
-                <label class="form-label" for="report-category">Scam category <span aria-hidden="true">*</span></label>
-                <select class="form-select" id="report-category" name="category" required>
-                  <option value="" selected disabled>Select a category</option>
-                  <option value="phishing">Phishing</option>
-                  <option value="qrishing">QRishing</option>
-                  <option value="smishing">Smishing</option>
-                  <option value="vishing">Vishing</option>
-                  <option value="fake-shop">Fake online shop</option>
-                  <option value="impersonation">Impersonation</option>
-                  <option value="other">Other or unsure</option>
-                </select>
-                <div class="invalid-feedback">Choose the category that best fits, or select Other or unsure.</div>
-              </div>
-
-              <div class="col-12">
-                <label class="form-label" for="incident-description">Incident description <span aria-hidden="true">*</span></label>
-                <textarea class="form-control" id="incident-description" name="description" rows="4" placeholder="What happened? Include details that may help reviewers understand the report." required></textarea>
-                <div class="form-text">Do not include passwords or one-time codes.</div>
-                <div class="invalid-feedback">Describe the incident before submitting.</div>
-              </div>
-
-              <div class="col-12">
-                <label class="form-label" for="suspicious-text">Paste the suspicious message or text</label>
-                <textarea class="form-control" id="suspicious-text" name="suspicious-text" rows="3" placeholder="Paste the message, link, or post here if available."></textarea>
-                <div class="form-text">Optional. Include the original link as text when possible.</div>
-              </div>
-
-              <div class="col-12">
-                <label class="form-label" for="report-screenshot">Screenshot attachment</label>
-                <input class="form-control" id="report-screenshot" name="screenshot" type="file" accept="image/png,image/jpeg,image/webp">
-                <div class="form-text">Optional. PNG, JPG, or WebP images up to 10 MB.</div>
-                <div class="invalid-feedback">Choose a supported image no larger than 10 MB.</div>
-              </div>
-
-              <div class="col-md-6">
-                <label class="form-label" for="sender">From (sender) <span aria-hidden="true">*</span></label>
-                <input class="form-control" id="sender" name="sender" type="text" placeholder="Phone number or name, e.g. GLOBE, SMART, NCAP" required>
-                <div class="invalid-feedback">Enter the sender's name or number.</div>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label" for="date-received">Date received <span aria-hidden="true">*</span></label>
-                <input class="form-control" id="date-received" name="date-received" type="date" required>
-                <div class="form-text">Future dates are not allowed.</div>
-                <div class="invalid-feedback">Choose today or an earlier date.</div>
-              </div>
-
-              <div class="col-12">
-                <label class="form-label" for="email-address">Email address <span aria-hidden="true">*</span></label>
-                <input class="form-control" id="email-address" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-                <div class="invalid-feedback">Enter a valid email address.</div>
-              </div>
-
-              <div class="col-12">
-                <fieldset class="location-fieldset">
-                  <legend class="form-label">Location <span aria-hidden="true">*</span></legend>
-                  <div class="btn-group location-mode mb-3" role="group" aria-label="Choose how to enter the location">
-                    <input class="btn-check" id="location-mode-text" name="location-mode" type="radio" value="text" checked>
-                    <label class="btn btn-outline-secondary" for="location-mode-text">Describe an area</label>
-                    <input class="btn-check" id="location-mode-map" name="location-mode" type="radio" value="map">
-                    <label class="btn btn-outline-secondary" for="location-mode-map">Google Maps pin</label>
-                  </div>
-
-                  <div id="location-text-panel">
-                    <label class="visually-hidden" for="location-text">Area, city, or nearby landmark</label>
-                    <input class="form-control" id="location-text" name="location-text" type="text" placeholder="Area, city, or nearby landmark" required>
-                    <div class="invalid-feedback">Enter an approximate location.</div>
-                  </div>
-
-                  <div id="location-map-panel" hidden>
-                    <p class="form-text mt-0">Drop a pin in Google Maps, then paste its link or coordinates here.</p>
-                    <a class="btn btn-outline-secondary btn-sm mb-3" href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer">Open Google Maps <span aria-hidden="true">↗</span></a>
-                    <label class="visually-hidden" for="location-map">Google Maps link or latitude and longitude</label>
-                    <input class="form-control" id="location-map" name="location-map" type="text" placeholder="Google Maps link or 14.5995, 120.9842" disabled>
-                    <div class="invalid-feedback">Enter a Google Maps link or valid coordinates.</div>
-                  </div>
-
-                  <div class="form-text mt-2">A location may help identify an area where an SMS blaster could be operating. Share only an approximate location if you prefer.</div>
+                <fieldset class="form-card">
+                    <legend data-step="1">About you</legend>
+                    <p class="field full">
+                        <label class="form-label" for="reporter-name">Full name <span aria-hidden="true">*</span></label>
+                        <input class="form-control" id="reporter-name" name="name" type="text" autocomplete="name" placeholder="Juan Dela Cruz" required>
+                        <span class="invalid-feedback">Enter your full name.</span>
+                    </p>
+                    <p class="field">
+                        <label class="form-label" for="contact-number">Mobile number <span aria-hidden="true">*</span></label>
+                        <input class="form-control" id="contact-number" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="09171234567" required>
+                        <small class="form-text">Used for text messages only. We will not call you.</small>
+                        <span class="invalid-feedback">Enter a Philippine mobile number, like 09171234567.</span>
+                    </p>
+                    <p class="field">
+                        <label class="form-label" for="email-address">Email (needed if you choose email)</label>
+                        <input class="form-control" id="email-address" name="email" type="email" autocomplete="email" placeholder="juan@email.com">
+                        <span class="invalid-feedback">Enter an email like name@example.com. It is required when you choose email updates.</span>
+                    </p>
+                    <p class="field full">
+                        <label class="form-label" for="contact-method">How should we send updates? <span aria-hidden="true">*</span></label>
+                        <select class="form-select" id="contact-method" name="contactMethod" required>
+                            <option>Text message</option>
+                            <option>Email</option>
+                            <option>Visit the HOA office</option>
+                        </select>
+                    </p>
+                    <p class="field full form-check">
+                        <input class="form-check-input" id="interpreter" name="interpreter" type="checkbox">
+                        <label class="form-check-label" for="interpreter">I would like a sign language interpreter or written communication for any in-person visit.</label>
+                    </p>
                 </fieldset>
-              </div>
 
-              <div class="col-12">
-                <fieldset class="privacy-agreement">
-                  <legend class="form-label">Before you submit</legend>
-                  <div class="form-check">
-                    <input class="form-check-input" id="privacy-consent" name="privacy-consent" type="checkbox" required>
-                    <label class="form-check-label" for="privacy-consent">I agree to provide this information for review. I understand this demo saves report details in this browser only, does not send them to an agency, and does not retain uploaded image files. <span aria-hidden="true">*</span></label>
-                    <div class="invalid-feedback">Consent is required to continue.</div>
-                  </div>
+                <fieldset class="form-card">
+                    <legend data-step="2">The problem</legend>
+                    <p class="field">
+                        <label class="form-label" for="report-category">Category <span aria-hidden="true">*</span></label>
+                        <select class="form-select" id="report-category" name="category" required>
+                            <option value="" selected disabled>Select a category</option>
+                            <option>Maintenance</option>
+                            <option>Pests</option>
+                            <option>Documentation</option>
+                            <option>Community members</option>
+                        </select>
+                        <span class="invalid-feedback">Choose the category that best fits this issue.</span>
+                    </p>
+                    <p class="field">
+                        <label class="form-label" for="report-detail">Type of problem</label>
+                        <select class="form-select" id="report-detail" name="detail" disabled>
+                            <option value="">Choose a category first</option>
+                        </select>
+                    </p>
+                    <p class="field full">
+                        <label class="form-label" for="incident-description">Description <span aria-hidden="true">*</span></label>
+                        <textarea class="form-control" id="incident-description" name="description" rows="4" placeholder="What happened? Include details that help the administrators understand the issue." required aria-describedby="word-count"></textarea>
+                        <small class="form-text" id="word-count">0 of 500 words. Do not include passwords or private ID numbers.</small>
+                        <span class="invalid-feedback">Describe the problem in 500 words or fewer.</span>
+                    </p>
+                    <p class="field full">
+                        <label class="form-label" for="date-observed">Date and time observed <span aria-hidden="true">*</span></label>
+                        <input class="form-control" id="date-observed" name="observed" type="datetime-local" required>
+                        <span class="invalid-feedback">Choose when you noticed the problem. It cannot be in the future.</span>
+                    </p>
                 </fieldset>
-              </div>
 
-              <div class="col-12 d-flex flex-column flex-sm-row align-items-sm-center gap-3">
-                <button class="btn btn-primary report-submit" type="submit">Submit report <span aria-hidden="true">→</span></button>
-                <p class="report-form-status small mb-0" id="report-form-status" role="status" aria-live="polite" hidden></p>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
+                <fieldset class="form-card">
+                    <legend data-step="3">Where is it?</legend>
+                    <p class="field">
+                        <label class="form-label" for="residence-area">Part of the residence <span aria-hidden="true">*</span></label>
+                        <select class="form-select" id="residence-area" name="area" required>
+                            <option value="" selected disabled>Select an area</option>
+                            <option>Unit / room</option>
+                            <option>Hallway</option>
+                            <option>Lobby</option>
+                            <option>Parking</option>
+                            <option>Garden / playground</option>
+                            <option>Gate / security post</option>
+                            <option>Other common area</option>
+                        </select>
+                        <span class="invalid-feedback">Choose which part of the residence this is in.</span>
+                    </p>
+                    <p class="field">
+                        <label class="form-label" for="location-text">Building, unit, or landmark <span aria-hidden="true">*</span></label>
+                        <input class="form-control" id="location-text" name="location" type="text" placeholder="e.g. Building B, near the elevator" required>
+                        <span class="invalid-feedback">Enter the building, unit, or landmark of the issue.</span>
+                    </p>
+                </fieldset>
+
+                <fieldset class="form-card">
+                    <legend data-step="4">Evidence and confirmation</legend>
+                    <p class="field full">
+                        <label class="form-label" for="report-photo">Photo (optional)</label>
+                        <input class="form-control" id="report-photo" name="photo" type="file" accept="image/png,image/jpeg">
+                        <small class="form-text">JPG or PNG, up to 5 MB. Describe what the photo shows in the description above. This demo does not keep the image file.</small>
+                        <span class="invalid-feedback">Choose a JPG or PNG image no larger than 5 MB.</span>
+                    </p>
+                    <p class="field full form-check">
+                        <input class="form-check-input" id="privacy-consent" name="privacy-consent" type="checkbox" required>
+                        <label class="form-check-label" for="privacy-consent">I confirm these details are accurate and agree to share them with the administrators. This demo saves reports in this browser only. <span aria-hidden="true">*</span></label>
+                        <span class="invalid-feedback">Please tick the box to confirm your report.</span>
+                    </p>
+                </fieldset>
+
+                <p class="form-actions">
+                    <button class="btn btn-clay btn-lg" type="submit">Submit report <span aria-hidden="true">→</span></button>
+                    <span class="report-form-status" id="report-form-status" role="status" hidden></span>
+                </p>
+            </form>
+
+            <aside class="tips" aria-labelledby="tips-title">
+                <h2 id="tips-title">Before you start</h2>
+                <ul>
+                    <li>Have your mobile number ready.</li>
+                    <li>Note the building, unit, or landmark.</li>
+                    <li>Take a clear photo if you can.</li>
+                    <li>Write down when you first noticed it.</li>
+                </ul>
+                <p class="side-note"><strong>Emergency?</strong> For exposed wires, a major leak, or fire, go to the HOA office or contact emergency services first. Do not wait for a report to be reviewed.</p>
+            </aside>
+        </section>
     </main>
 
-    <footer class="site-footer py-4">
-      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
-        <p class="footer-copyright mb-0">&copy; 2026 Suri</p>
-        <p class="footer-notice mb-0">This is intended for Web Development (WEBDEVT) demo purposes only.</p>
-      </div>
+    <footer class="site-footer">
+        <section aria-labelledby="footer-about">
+            <h2 class="visually-hidden" id="footer-about">About HomeLink</h2>
+            <p class="footer-wordmark">homelink<span class="brand-period">.</span></p>
+            <p>Report home and community issues in writing, then follow each one until it is resolved. No phone call needed.</p>
+        </section>
+        <nav aria-labelledby="footer-explore">
+            <h2 class="footer-heading" id="footer-explore">Explore</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="report.html">Report an issue</a></li>
+                <li><a href="track.html">Track a report</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <section aria-labelledby="footer-contact">
+            <h2 class="footer-heading" id="footer-contact">HOA office (sample details)</h2>
+            <address>
+                Email: <a href="mailto:admin@homelink.example">admin@homelink.example</a><br>
+                Text message: 0917 000 0000<br>
+                In person: Mon to Sat, <time datetime="08:00">8:00 AM</time> to <time datetime="17:00">5:00 PM</time><br>
+                Interpreter or written help available on request.
+            </address>
+        </section>
+        <p class="footer-legal">
+            <small>&copy; 2026 HomeLink</small>
+            <small>Web Development (WEBDEVT) demo only. Sample reports are demonstration data.</small>
+        </p>
     </footer>
-  </body>
+</body>
 </html>

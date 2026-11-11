@@ -1,127 +1,231 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f7f7f2">
-    <meta name="description" content="A community space to check suspicious links and messages before they spread." >
-    <title>HomeLink | A Citizen Reporting Website </title>
+    <meta name="theme-color" content="#24473a">
+    <meta name="description" content="Report maintenance, pest, documentation, and community concerns to your residential administrators in writing and track them.">
+    <title>HomeLink | Report and track community issues</title>
 
-    <!-- Bootstrap supplies the responsive layout and common interface styles. -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- A display font paired with a readable body font gives the page its own voice. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles/index.css">
-    <link rel="stylesheet" href="styles/menu.css">
-    <link rel="stylesheet" href="styles/hero.css">
-    <link rel="stylesheet" href="styles/report-lookup.css">
-    <link rel="stylesheet" href="styles/scams.css">
-    <link rel="stylesheet" href="styles/how-it-works.css">
-    <link rel="stylesheet" href="styles/volunteer.css">
-    <link rel="stylesheet" href="styles/agencies.css">
-    <link rel="stylesheet" href="styles/footer.css">
-    <script src="scripts/hero.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/home.css">
     <script src="scripts/menu.js" defer></script>
     <script src="scripts/report-lookup.js" defer></script>
-    <script src="scripts/volunteer.js" defer></script>
-  </head>
-  <body>
-    <!-- A sticky header keeps the main actions close while the page is in view. -->
-    <header class="navbar navbar-expand-md sticky-top bg-light px-3 px-lg-5">
-      <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center gap-2 mb-0" href="#home" aria-label="Suri home">
-        <span class="brand-mark" aria-hidden="true">H</span>
-        <span class="brand-name fs-4 fw-bold">HomeLink<span class="brand-period">.</span></span>
-      </a>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to main content</a>
 
-      <button class="navbar-toggler" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
-        <span class="navbar-toggler-icon" aria-hidden="true"></span>
-      </button>
-
-      <nav class="collapse navbar-collapse justify-content-md-end" id="site-navigation" aria-label="Main navigation">
-        <div class="navbar-nav align-items-md-center gap-md-5">
-          <a class="nav-link active" href="#home" aria-current="page">Home</a>
-          <a class="nav-link" href="#how-it-works">About</a>
-          <a class="nav-link" href="#volunteer">Volunteer</a>
-          <a class="btn btn-outline-dark ms-md-2" href="report.html">Report <span aria-hidden="true">↗</span></a>
-        </div>
-      </nav>
-      </div>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md" aria-label="Main">
+            <a class="navbar-brand" href="index.html" aria-label="HomeLink home page">
+                <span class="brand-mark" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+                <span class="brand-name">homelink<span class="brand-period">.</span></span>
+            </a>
+            <button class="navbar-toggler border-0" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+                <span class="navbar-toggler-icon" aria-hidden="true"></span>
+            </button>
+            <ul class="navbar-nav navbar-collapse collapse ms-md-auto justify-content-md-end align-items-md-center gap-md-1" id="site-navigation">
+                <li class="nav-item"><a class="nav-link" href="index.html" aria-current="page">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="index.html#how-it-works">How it works</a></li>
+                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+                <li class="nav-item"><a class="btn btn-clay ms-md-2" href="report.html">Report an issue</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-      <!-- The hero fills the space below the header and uses a photo selected in scripts/hero.js. -->
-      <section class="hero d-flex align-items-center position-relative overflow-hidden" id="home" aria-labelledby="hero-title">
-        <div class="container position-relative">
-          <div class="row g-5 align-items-center">
-            <div class="col-lg-8 hero-content">
-              <p class="hero-eyebrow d-flex align-items-center gap-2 fw-bold mb-3"><span class="eyebrow-dot" aria-hidden="true"></span> A Citizen Reporting Website</p>
-              <h1 class="hero-title fw-semibold mb-0" id="hero-title">See something wrong?<br><span>I-HomeLink natin.</span></h1>
-              <p class="hero-description lead my-4">Connect with your community by reporting concerns and keeping everyone informed.</p>
-              <a class="btn btn-primary d-inline-flex align-items-center gap-4" href="report.html">Report an issue <span aria-hidden="true">↗</span></a>
-              <p class="hero-note small mt-4 mb-0"><span aria-hidden="true">✳</span> Speak up. Make a difference.</p>
-            </div>
-            <div class="col-lg-4">
-              <aside class="report-lookup" id="report" aria-labelledby="report-lookup-title">
-                <h2 class="report-lookup-title" id="report-lookup-title">Already submitted a report?</h2>
-                <p class="report-lookup-copy">Enter your report number to check its status.</p>
-                <form id="report-lookup-form">
-                  <label class="form-label" for="report-number">Report number</label>
-                  <input class="form-control mb-3" id="report-number" name="report-number" type="text" placeholder="e.g. SR-2026-001" autocomplete="off" required>
-                  <button class="btn btn-primary w-100" type="submit">Check report status <span aria-hidden="true">→</span></button>
-                  <p class="report-lookup-feedback small mt-3 mb-0" id="report-lookup-feedback" role="status" aria-live="polite" hidden></p>
-                </form>
-              </aside>
-            </div>
-          </div>
-        </div>
-        <p class="photo-credit position-absolute bottom-0 end-0 small m-3">Every concern counts.</p>
-      </section>
+    <main id="main">
+        <section class="hero" id="home" aria-labelledby="hero-title">
+            <figure class="hero-figure">
+                <img src="assets/hero.svg" alt="Illustration of a residential neighborhood at sunset: rows of houses with warm glowing windows, apartment towers behind them, and trees along a quiet street under a pink and orange sky." width="1600" height="900">
+            </figure>
+            <p class="hero-badge"><i class="bi bi-geo-alt-fill" aria-hidden="true"></i> Your residential community</p>
+            <h1 class="hero-title" id="hero-title">A well-kept home starts with <em>one report.</em></h1>
+            <p class="hero-copy">Tell your administrators about leaks, pests, paperwork, or neighbor concerns in writing, then follow the fix from start to finish.</p>
+            <p class="hero-actions">
+                <a class="btn btn-clay btn-lg" href="report.html">Submit a report</a>
+                <a class="btn btn-ghost btn-lg" href="track.html">Track my report</a>
+            </p>
+        </section>
 
-      <section class="how-it-works py-5" id="how-it-works" aria-labelledby="how-it-works-title">
-        <div class="container py-lg-4">
-          <div class="how-heading mb-5">
-            <p class="how-kicker text-uppercase fw-bold mb-2">From submission to results</p>
-            <h2 class="how-title mb-3" id="how-it-works-title">How it works</h2>
-            <p class="how-intro mb-0">Submit suspicious content, get an AI-assisted analysis, and review the findings.</p>
-          </div>
+        <section class="quick" aria-labelledby="quick-title">
+            <h2 id="quick-title">Start with what’s wrong</h2>
+            <ul class="chips">
+                <li><a href="report.html?category=Maintenance"><i class="bi bi-tools" aria-hidden="true"></i>Maintenance</a></li>
+                <li><a href="report.html?category=Pests"><i class="bi bi-bug" aria-hidden="true"></i>Pests</a></li>
+                <li><a href="report.html?category=Documentation"><i class="bi bi-file-earmark-text" aria-hidden="true"></i>Documentation</a></li>
+                <li><a href="report.html?category=Community%20members"><i class="bi bi-people" aria-hidden="true"></i>Community members</a></li>
+            </ul>
+            <form class="lookup" id="report-lookup-form" role="search" aria-labelledby="lookup-title" novalidate>
+                <h3 id="lookup-title">Already reported?</h3>
+                <label class="form-label" for="report-number">Reference number</label>
+                <p class="input-group mb-0">
+                    <input class="form-control" id="report-number" name="report-number" type="text" placeholder="e.g. HL-2026-001" autocomplete="off" required aria-describedby="report-lookup-feedback">
+                    <button class="btn btn-forest" type="submit">Check</button>
+                </p>
+                <p class="lookup-feedback" id="report-lookup-feedback" role="status" hidden></p>
+            </form>
+        </section>
 
-          <div class="how-steps row g-4 position-relative">
-            <div class="col-md-4">
-              <article class="how-step">
-                <span class="step-number">01</span>
-                <h3 class="step-title">Submit</h3>
-                <p class="step-description mb-0">Send a suspicious link or text message, or upload a screenshot of what you received.</p>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="how-step">
-                <span class="step-number">02</span>
-                <h3 class="step-title">Analyze</h3>
-                <p class="step-description mb-0">AI examines the submitted text or screenshot and compares it with known and similar reports in the database.</p>
-              </article>
-            </div>
-            <div class="col-md-4">
-              <article class="how-step">
-                <span class="step-number">03</span>
-                <h3 class="step-title">Review</h3>
-                <p class="step-description mb-0">Read the analysis, see relevant matches, and follow the suggested next steps.</p>
-              </article>
-            </div>
-          </div>
-        </div>
-      </section>
+        <section class="wrap" aria-labelledby="updates-title">
+            <h2 class="section-title" id="updates-title">What’s happening around the community</h2>
+            <p><span class="pill">Sample data</span> These updates are examples for the demo.</p>
+            <ul class="updates" tabindex="0" aria-label="Sample community updates, scrolls sideways">
+                <li>
+                    <article class="update-card">
+                        <p class="pill is-verdict">In progress</p>
+                        <h3>Maintenance</h3>
+                        <p>Two lights on parking level 1 are being replaced.</p>
+                        <time datetime="2026-11-03">Nov 3, 2026</time>
+                    </article>
+                </li>
+                <li>
+                    <article class="update-card">
+                        <p class="pill ">Under review</p>
+                        <h3>Pests</h3>
+                        <p>The cockroach report near the garbage room is with the administrators.</p>
+                        <time datetime="2026-11-02">Nov 2, 2026</time>
+                    </article>
+                </li>
+                <li>
+                    <article class="update-card">
+                        <p class="pill is-warn">Needs more information</p>
+                        <h3>Community members</h3>
+                        <p>A noise report needs the unit number to continue.</p>
+                        <time datetime="2026-11-01">Nov 1, 2026</time>
+                    </article>
+                </li>
+                <li>
+                    <article class="update-card">
+                        <p class="pill is-verdict">Resolved</p>
+                        <h3>Maintenance</h3>
+                        <p>Elevator 2 was serviced and tested.</p>
+                        <time datetime="2026-10-28">Oct 28, 2026</time>
+                    </article>
+                </li>
+            </ul>
+        </section>
 
+        <section class="wrap" id="categories" aria-labelledby="cat-title">
+            <h2 class="section-title" id="cat-title">What can we help you report?</h2>
+            <ul class="bento">
+                <li>
+                    <article class="tile">
+                        <i class="bi bi-tools" aria-hidden="true"></i>
+                        <h3><a class="stretched-link" href="report.html?category=Maintenance">Maintenance<span class="visually-hidden">: start a report</span></a></h3>
+                        <p>Leaks, broken lights, damaged doors, elevators, and shared facilities that need repair.</p>
+                        <p class="go" aria-hidden="true">Report this →</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="tile">
+                        <i class="bi bi-bug" aria-hidden="true"></i>
+                        <h3><a class="stretched-link" href="report.html?category=Pests">Pests<span class="visually-hidden">: start a report</span></a></h3>
+                        <p>Rats, cockroaches, termites, or stray animals.</p>
+                        <p class="go" aria-hidden="true">Report this →</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="tile">
+                        <i class="bi bi-file-earmark-text" aria-hidden="true"></i>
+                        <h3><a class="stretched-link" href="report.html?category=Documentation">Documentation<span class="visually-hidden">: start a report</span></a></h3>
+                        <p>Permits, access cards, clearances, billing, and records.</p>
+                        <p class="go" aria-hidden="true">Report this →</p>
+                    </article>
+                </li>
+                <li>
+                    <article class="tile">
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                        <h3><a class="stretched-link" href="report.html?category=Community%20members">Community members<span class="visually-hidden">: start a report</span></a></h3>
+                        <p>Noise, parking violations, and other neighbor concerns.</p>
+                        <p class="go" aria-hidden="true">Report this →</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <section class="wrap how" id="how-it-works" aria-labelledby="how-title">
+            <header>
+                <p class="page-kicker">From report to resolution</p>
+                <h2 class="section-title" id="how-title">How it works</h2>
+                <p>Three steps, and you always know where your report stands.</p>
+            </header>
+            <ol class="steps">
+                <li><h3>Submit</h3><p>Choose a category, describe the problem in writing, say where it is, and add a photo if you have one.</p></li>
+                <li><h3>Review</h3><p>The administrators review your report, assign it, or send you a text or email if they need more details.</p></li>
+                <li><h3>Resolve</h3><p>Follow the status with your reference number until the issue is resolved.</p></li>
+            </ol>
+        </section>
+
+        <section class="wrap" aria-labelledby="comms-title">
+            <h2 class="section-title" id="comms-title">No phone call needed</h2>
+            <ul class="comms-list">
+                <li>
+                    <article>
+                        <i class="bi bi-pencil-square" aria-hidden="true"></i>
+                        <h3>Report in writing</h3>
+                        <p>Everything is done through a form. You never have to speak to anyone to make a report.</p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <i class="bi bi-chat-text" aria-hidden="true"></i>
+                        <h3>Updates by text or email</h3>
+                        <p>Choose how we reach you. Status changes are also shown on the Track page.</p>
+                    </article>
+                </li>
+                <li>
+                    <article>
+                        <i class="bi bi-people" aria-hidden="true"></i>
+                        <h3>Help in person</h3>
+                        <p>Visiting the HOA office? Ask for a sign language interpreter or written back-and-forth.</p>
+                    </article>
+                </li>
+            </ul>
+        </section>
+
+        <aside class="cta-band" aria-labelledby="cta-title">
+            <section>
+                <h2 id="cta-title">Spotted something that needs attention?</h2>
+                <p>It takes about two minutes. For urgent hazards, go to the HOA office or contact emergency services.</p>
+            </section>
+            <a class="btn btn-light btn-lg" href="report.html">Report an issue</a>
+        </aside>
     </main>
 
-    <footer class="site-footer py-4">
-      <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2">
-        <p class="footer-copyright mb-0">&copy; 2026 Suri</p>
-        <p class="footer-notice mb-0">This is intended for Web Development (WEBDEVT) demo purposes only.</p>
-      </div>
+    <footer class="site-footer">
+        <section aria-labelledby="footer-about">
+            <h2 class="visually-hidden" id="footer-about">About HomeLink</h2>
+            <p class="footer-wordmark">homelink<span class="brand-period">.</span></p>
+            <p>Report home and community issues in writing, then follow each one until it is resolved. No phone call needed.</p>
+        </section>
+        <nav aria-labelledby="footer-explore">
+            <h2 class="footer-heading" id="footer-explore">Explore</h2>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="report.html">Report an issue</a></li>
+                <li><a href="track.html">Track a report</a></li>
+                <li><a href="faq.html">FAQ</a></li>
+            </ul>
+        </nav>
+        <section aria-labelledby="footer-contact">
+            <h2 class="footer-heading" id="footer-contact">HOA office (sample details)</h2>
+            <address>
+                Email: <a href="mailto:admin@homelink.example">admin@homelink.example</a><br>
+                Text message: 0917 000 0000<br>
+                In person: Mon to Sat, <time datetime="08:00">8:00 AM</time> to <time datetime="17:00">5:00 PM</time><br>
+                Interpreter or written help available on request.
+            </address>
+        </section>
+        <p class="footer-legal">
+            <small>&copy; 2026 HomeLink</small>
+            <small>Web Development (WEBDEVT). Made by Group Manhattan.</small>
+        </p>
     </footer>
-  </body>
+</body>
 </html>

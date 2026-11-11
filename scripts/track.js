@@ -1,93 +1,96 @@
-const reportsStorageKey = "suriReports";
+const reportsStorageKey = "homelinkReports";
 const trackSearchForm = document.querySelector("#track-search-form");
 const trackNumberInput = document.querySelector("#track-report-number");
 const trackNotice = document.querySelector("#track-notice");
 const trackReport = document.querySelector("#track-report");
 const trackStatus = document.querySelector("#track-status");
 const trackTimeline = document.querySelector("#track-timeline");
-const trackVerdict = document.querySelector("#track-verdict");
-// `fetch` requests the sample data file. Promises let the page continue while it loads.
+const trackOutcome = document.querySelector("#track-outcome");
+
 const demoReportsRequest = fetch("data/reports.json")
   .then((response) => {
     if (!response.ok) {
-      // `throw` creates an error that can be handled by the `catch` below.
       throw new Error("Could not load sample reports.");
     }
-
     return response.json();
   })
   .catch(() => ({}));
 
 const timelineSteps = [
-  { title: "Report submitted", copy: "Your report has been saved." },
-  { title: "AI analysis", copy: "The submitted content is checked for known or similar reports." },
-  { title: "Community review", copy: "Reviewers assess reports that need a human decision." },
-  { title: "Verdict published", copy: "The final assessment is shown on this report." }
+  { title: "Submitted", copy: "Your report was received." },
+  { title: "Under review", copy: "An administrator checks the details." },
+  { title: "In progress", copy: "The issue is assigned and being handled." },
+  { title: "Resolved", copy: "The issue is fixed and the report is closed." }
 ];
 
-// Read saved report data from this browser and parse its JSON text into an object.
+const statusInfo = {
+  "submitted": { label: "Submitted", step: 0, tone: "" },
+  "under-review": { label: "Under review", step: 1, tone: "" },
+  "needs-info": { label: "Needs more information", step: 1, tone: "is-warn" },
+  "in-progress": { label: "In progress", step: 2, tone: "" },
+  "resolved": { label: "Resolved", step: 3, tone: "is-verdict" },
+  "rejected": { label: "Rejected", step: 1, tone: "is-bad" },
+  "duplicate": { label: "Duplicate", step: 1, tone: "is-warn" }
+};
+
 const readReports = () => JSON.parse(localStorage.getItem(reportsStorageKey) || "{}");
 
-// Turn a date value into a readable date, while handling missing or invalid values.
-const formatDate = (value) => {
-  if (!value) {
+const formatDate = (value, withTime = false) => {
+  const date = new Date(value);
+  if (!value || Number.isNaN(date.getTime())) {
     return "Not provided";
   }
-
-  const localDateMatch = value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
-  const date = localDateMatch
-    ? new Date(Number(localDateMatch[1]), Number(localDateMatch[2]) - 1, Number(localDateMatch[3]))
-    : new Date(value);
-
-  return Number.isNaN(date.getTime())
-    ? value
-    : new Intl.DateTimeFormat(undefined, { dateStyle: "medium" }).format(date);
+  return new Intl.DateTimeFormat(undefined, { dateStyle: "medium", ...(withTime ? { timeStyle: "short" } : {}) }).format(date);
 };
 
 const setValue = (selector, value) => {
-  // `textContent` displays text without treating it as HTML markup.
   document.querySelector(selector).textContent = value || "Not provided";
 };
 
-// Build the progress list by creating HTML elements and adding them to the page.
-const buildTimeline = (report) => {
-  const currentStep = report.status === "verdict"
-    ? 3
-    : report.status === "community-review"
-      ? 2
-      : 1;
-
+const buildTimeline = (info) => {
   trackTimeline.replaceChildren();
-
   timelineSteps.forEach((step, index) => {
     const item = document.createElement("li");
     const marker = document.createElement("span");
-    const content = document.createElement("div");
     const title = document.createElement("h4");
     const description = document.createElement("p");
-    const state = index < currentStep ? "complete" : index === currentStep ? "current" : "upcoming";
+    const finished = info.step === 3 && index === 3;
+    const state = finished || index < info.step ? "complete" : index === info.step ? "current" : "upcoming";
 
     item.className = `track-step is-${state}`;
     marker.className = "track-step-marker";
     marker.setAttribute("aria-hidden", "true");
-    marker.textContent = state === "complete" ? "✓" : String(index + 1).padStart(2, "0");
-    content.className = "track-step-content";
+    marker.textContent = state === "complete" ? "✓" : String(index + 1);
     title.className = "track-step-title";
-    title.textContent = step.title;
+    title.textContent = `${step.title}${state === "complete" ? " (done)" : state === "current" ? " (current step)" : ""}`;
     description.className = "track-step-copy";
     description.textContent = step.copy;
-
     if (state === "current") {
       item.setAttribute("aria-current", "step");
     }
-
-    content.append(title, description);
-    item.append(marker, content);
+    item.append(marker, title, description);
     trackTimeline.append(item);
   });
 };
 
-const displayReport = (report, isExample = false) => {
+const outcomeFor = (report) => {
+  if (report.status === "resolved") {
+    return ["Resolution", "Issue resolved", report.note || "This report has been resolved."];
+  }
+  if (report.status === "rejected") {
+    return ["Reason", "Report rejected", report.note || "The administrators could not act on this report. The record is kept for auditing."];
+  }
+  if (report.status === "needs-info") {
+    return ["Action needed", "More information required", report.note || "Please send the missing details to the administrator."];
+  }
+  if (report.status === "duplicate") {
+    return ["Linked report", "Already being handled", report.note || "This issue was reported earlier and is already being handled."];
+  }
+  return null;
+};
+
+const displayReport = (report, isDemo) => {
+  const info = statusInfo[report.status] || statusInfo.submitted;
   trackNotice.hidden = true;
   trackReport.hidden = false;
   trackNumberInput.value = report.reportNumber;
@@ -95,90 +98,79 @@ const displayReport = (report, isExample = false) => {
   setValue("#track-category", report.category);
   setValue("#track-report-heading", report.reportNumber);
   setValue("#track-description", report.description);
-  setValue("#track-sender", report.sender);
-  setValue("#track-date-received", formatDate(report.receivedDate));
-  setValue("#track-location", report.location);
+  setValue("#track-detail", report.detail);
+  setValue("#track-location", [report.area, report.location].filter(Boolean).join(", "));
+  setValue("#track-observed", formatDate(report.observedAt, true));
   setValue("#track-submitted", formatDate(report.submittedAt));
+  setValue("#track-method", report.contactMethod);
 
-  const statusLabel = report.status === "verdict"
-    ? "Verdict published"
-    : report.status === "community-review"
-      ? "Community review"
-      : "Pending review";
+  trackStatus.textContent = info.label;
+  trackStatus.className = `track-status ${info.tone}`.trim();
 
-  trackStatus.textContent = statusLabel;
-  // `toggle` adds or removes this CSS class depending on whether a verdict is published.
-  trackStatus.classList.toggle("is-verdict", report.status === "verdict");
-
-  const messageRow = document.querySelector("#track-message-row");
-  messageRow.hidden = !report.suspiciousText;
-  if (report.suspiciousText) {
-    setValue("#track-message", report.suspiciousText);
+  const hasPhoto = Boolean(report.photoName);
+  document.querySelector("#track-photo-label").hidden = !hasPhoto;
+  document.querySelector("#track-photo").hidden = !hasPhoto;
+  if (hasPhoto) {
+    setValue("#track-photo", `${report.photoName} (image file is not kept in this demo)`);
   }
 
-  const screenshotRow = document.querySelector("#track-screenshot-row");
-  screenshotRow.hidden = !report.screenshotName;
-  if (report.screenshotName) {
-    setValue("#track-screenshot", `${report.screenshotName} (image file is not retained in this demo)`);
+  buildTimeline(info);
+
+  const outcome = outcomeFor(report);
+  trackOutcome.hidden = !outcome;
+  if (outcome) {
+    setValue("#track-outcome-kicker", outcome[0]);
+    setValue("#track-outcome-title", outcome[1]);
+    setValue("#track-outcome-copy", outcome[2]);
   }
 
-  buildTimeline(report);
-  trackVerdict.hidden = report.status !== "verdict";
-
-  if (report.status === "verdict") {
-    setValue("#track-verdict-title", report.verdict || "Verdict published");
-    setValue("#track-verdict-copy", report.verdictDetails || "This verdict was added to this report after review.");
-  }
-
-  if (isExample) {
-    trackNotice.textContent = "Sample report shown for demonstration. This is not a real report or assessment.";
+  if (isDemo) {
+    trackNotice.textContent = "Sample report shown for demonstration. This is not a real report.";
     trackNotice.hidden = false;
   }
 };
 
-// `async` allows this function to wait for data with `await` without blocking the page.
 const loadReport = async (reportNumber) => {
   trackReport.hidden = true;
-
+  const normalized = reportNumber.trim().toUpperCase();
   try {
-    const normalizedNumber = reportNumber.trim().toUpperCase();
-    // Load both data sources together, then use whichever contains this report number.
-    const [demoReports, savedReports] = await Promise.all([
-      demoReportsRequest,
-      Promise.resolve(readReports())
-    ]);
-    const report = savedReports[normalizedNumber] || demoReports[normalizedNumber];
-
+    const demoReports = await demoReportsRequest;
+    let saved = {};
+    try {
+      saved = readReports();
+    } catch {
+      saved = {};
+    }
+    const report = saved[normalized] || demoReports[normalized];
     if (!report) {
-      trackNotice.textContent = "No report with that number was found. Check the number and try again.";
+      trackNotice.textContent = `We could not find ${normalized || "that number"}. Check your reference number and try again.`;
       trackNotice.hidden = false;
       return;
     }
-
     displayReport(report, Boolean(report.isDemo));
   } catch {
-    trackNotice.textContent = "Reports could not be loaded. Check this browser's local storage and try again.";
+    trackNotice.textContent = "Reports could not be loaded. Try again.";
     trackNotice.hidden = false;
   }
 };
 
 trackSearchForm.addEventListener("submit", (event) => {
-  // Handle the search ourselves instead of letting the browser reload the page.
   event.preventDefault();
   const reportNumber = trackNumberInput.value.trim().toUpperCase();
+  if (!reportNumber) {
+    trackNotice.textContent = "Enter your reference number, like HL-2026-001.";
+    trackNotice.hidden = false;
+    trackNumberInput.focus();
+    return;
+  }
+
   const nextUrl = new URL(window.location.href);
-  // Update the address bar's report parameter so this report can be linked or refreshed.
   nextUrl.searchParams.set("report", reportNumber);
   window.history.replaceState(null, "", nextUrl);
   loadReport(reportNumber);
 });
 
-// Read query parameters from the page URL, such as ?report=SR-... or ?demo=verdict.
-const parameters = new URLSearchParams(window.location.search);
-const requestedReport = parameters.get("report") || (
-  parameters.get("demo") === "verdict" ? "SR-20261025-1003" : ""
-);
-
+const requestedReport = new URLSearchParams(window.location.search).get("report");
 if (requestedReport) {
   loadReport(requestedReport);
 }

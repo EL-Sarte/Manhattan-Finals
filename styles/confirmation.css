@@ -1,0 +1,11 @@
+.confirm-wrap { max-width: 600px; }
+.receipt, .confirm-empty { padding: 2rem; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 20px 50px rgb(36 71 58 / 12%); }
+.receipt > header { padding-bottom: 1.5rem; border-bottom: 2px dashed var(--line); text-align: center; }
+.receipt-check { display: grid; width: 64px; aspect-ratio: 1; margin: 0 auto 1rem; place-items: center; border-radius: 50%; background: #d6ecd9; color: #17502b; font-size: 2rem; }
+.confirm-label { margin: 1rem 0 0.25rem; color: var(--muted); font-size: 0.85rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.confirm-number { margin: 0; overflow-wrap: anywhere; color: var(--clay-dark); font: 700 clamp(2rem, 9vw, 3rem) var(--display-font); }
+.receipt dl { display: grid; grid-template-columns: max-content 1fr; gap: 0.5rem 1.25rem; margin: 1.5rem 0; }
+.receipt dt { color: var(--muted); font-weight: 800; }
+.receipt dd { margin: 0; }
+.confirm-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin: 0; }
+.confirm-empty { text-align: center; }

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#24473a">
+    <meta name="description" content="Confirmation that your HomeLink report was received.">
+    <title>Report submitted | HomeLink</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/confirmation.css">
+    <script src="scripts/menu.js" defer></script>
+    <script src="scripts/confirmation.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md" aria-label="Main">
+        <a class="navbar-brand" href="index.html" aria-label="HomeLink home page">
+          <span class="brand-mark" aria-hidden="true"><i class="bi bi-house-heart-fill"></i></span>
+          <span class="brand-name">homelink<span class="brand-period">.</span></span>
+        </a>
+        <button class="navbar-toggler border-0" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="site-navigation">
+          <span class="navbar-toggler-icon" aria-hidden="true"></span>
+        </button>
+        <ul class="navbar-nav navbar-collapse collapse ms-md-auto justify-content-md-end align-items-md-center gap-md-1" id="site-navigation">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="index.html#how-it-works">How it works</a></li>
+        <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+        <li class="nav-item"><a class="nav-link" href="track.html">Track</a></li>
+        <li class="nav-item"><a class="btn btn-clay ms-md-2" href="report.html" aria-current="page">Report an issue</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <header class="page-band">
+        <p class="page-kicker">Confirmation</p>
+        <h1 class="page-title" id="confirm-title">Report confirmation</h1>
+        <p class="page-copy">Keep your reference number. You will need it to check progress.</p>
+      </header>
+
+      <section class="wrap confirm-wrap" aria-label="Your report receipt">
+        <article class="receipt" id="confirm-card" aria-labelledby="receipt-title" hidden>
+          <header>
+            <p class="receipt-check" aria-hidden="true"><i class="bi bi-check-lg"></i></p>
+            <h2 id="receipt-title">Report submitted</h2>
+            <p class="confirm-label">Reference number</p>
+            <p class="confirm-number" id="confirm-number"></p>
+          </header>
+          <dl>
+            <dt>Category</dt><dd id="confirm-category"></dd>
+            <dt>Location</dt><dd id="confirm-location"></dd>
+            <dt>Status</dt><dd><span class="pill">Submitted</span></dd>
+            <dt>Updates by</dt><dd id="confirm-method"></dd>
+          </dl>
+          <p>We will send updates by <strong id="confirm-method-text"></strong>. We will not call you. You can also check progress on the Track page.</p>
+          <p class="confirm-actions">
+            <a class="btn btn-forest" id="confirm-track" href="track.html">Track this report</a>
+            <a class="btn btn-outline-dark" href="index.html">Back to home</a>
+          </p>
+        </article>
+        <article class="confirm-empty" id="confirm-empty" hidden>
+          <h2>We could not find a recent report.</h2>
+          <p>Reports are saved in this browser only. Submit a new report to get a reference number.</p>
+          <p><a class="btn btn-clay" href="report.html">Report an issue</a></p>
+        </article>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <section aria-labelledby="footer-about">
+        <h2 class="visually-hidden" id="footer-about">About HomeLink</h2>
+        <p class="footer-wordmark">homelink<span class="brand-period">.</span></p>
+        <p>Report home and community issues in writing, then follow each one until it is resolved. No phone call needed.</p>
+      </section>
+      <nav aria-labelledby="footer-explore">
+        <h2 class="footer-heading" id="footer-explore">Explore</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="report.html">Report an issue</a></li>
+          <li><a href="track.html">Track a report</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+        </ul>
+      </nav>
+      <section aria-labelledby="footer-contact">
+        <h2 class="footer-heading" id="footer-contact">HOA office (sample details)</h2>
+        <address>
+          Email: <a href="mailto:admin@homelink.example">admin@homelink.example</a><br>
+          Text message: 0917 000 0000<br>
+          In person: Mon to Sat, <time datetime="08:00">8:00 AM</time> to <time datetime="17:00">5:00 PM</time><br>
+          Interpreter or written help available on request.
+        </address>
+      </section>
+      <p class="footer-legal">
+        <small>&copy; 2026 HomeLink</small>
+        <small>Web Development (WEBDEVT) demo only. Sample reports are demonstration data.</small>
+      </p>
+    </footer>
+  </body>
+</html>
