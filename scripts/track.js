@@ -154,21 +154,66 @@ const loadReport = async (reportNumber) => {
   }
 };
 
+
+// checking the reference number when leaving the field
+trackNumberInput.addEventListener("blur", () => {
+  trackNumberInput.value = trackNumberInput.value.trim().toUpperCase();
+
+  const isValid = trackNumberInput.checkValidity();
+
+  trackNumberInput.classList.toggle("is-invalid", !isValid);
+  trackNumberInput.classList.toggle("is-valid", isValid);
+});
+
+// clearing validation while typing
+trackNumberInput.addEventListener("input", () => {
+  trackNumberInput.classList.remove("is-invalid", "is-valid");
+});
+
+
+// checking the reference number when submitting
 trackSearchForm.addEventListener("submit", (event) => {
   event.preventDefault();
+
   const reportNumber = trackNumberInput.value.trim().toUpperCase();
+
+  // checking if the field is empty
   if (!reportNumber) {
-    trackNotice.textContent = "Enter your reference number, like HL-2026-001.";
+    trackNotice.textContent = "Enter your reference number.";
     trackNotice.hidden = false;
+
+    trackNumberInput.classList.add("is-invalid");
+    trackNumberInput.classList.remove("is-valid");
+
     trackNumberInput.focus();
     return;
   }
 
+  // checking the reference number format
+  if (!/^HL-\d{4}-\d{3}$/.test(reportNumber)) {
+    trackNotice.textContent = "Invalid reference number format. Use HL-2026-001.";
+    trackNotice.hidden = false;
+
+    trackNumberInput.classList.add("is-invalid");
+    trackNumberInput.classList.remove("is-valid");
+
+    trackNumberInput.focus();
+    return;
+  }
+
+  // reference number has the correct format
+  trackNumberInput.value = reportNumber;
+  trackNumberInput.classList.remove("is-invalid");
+  trackNumberInput.classList.add("is-valid");
+
   const nextUrl = new URL(window.location.href);
   nextUrl.searchParams.set("report", reportNumber);
   window.history.replaceState(null, "", nextUrl);
+
   loadReport(reportNumber);
 });
+
+
 
 const requestedReport = new URLSearchParams(window.location.search).get("report");
 if (requestedReport) {

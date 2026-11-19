@@ -44,12 +44,37 @@
             <p class="page-kicker">Report status</p>
             <h1 class="page-title" id="track-title">Where’s my report?</h1>
             <form id="track-search-form" role="search" aria-labelledby="track-title" novalidate>
-                <label class="visually-hidden" for="track-report-number">Reference number</label>
-                <p class="input-group input-group-lg">
-                    <input class="form-control" id="track-report-number" name="report-number" type="text" placeholder="e.g. HL-2026-001" autocomplete="off" required aria-describedby="track-hint">
-                    <button class="btn btn-clay" type="submit">Find report</button>
-                </p>
-                <small class="track-hint" id="track-hint">Try the demonstration cases HL-2026-001 to HL-2026-007. They cover every status.</small>
+                <label class="visually-hidden" for="track-report-number">
+                    Reference number
+                </label>
+
+                <div class="input-group input-group-lg">
+                    <input
+                            class="form-control"
+                            id="track-report-number"
+                            name="report-number"
+                            type="text"
+                            placeholder="e.g. HL-2026-001"
+                            autocomplete="off"
+                            pattern="HL-[0-9]{4}-[0-9]{3}"
+                            title="Format: HL-2026-001"
+                            required
+                            aria-describedby="track-hint"
+                    >
+
+                    <button class="btn btn-clay" type="submit">
+                        Find report
+                    </button>
+                </div>
+
+                <span class="invalid-feedback">
+        Enter a valid reference number, like HL-2026-001.
+    </span>
+
+                <small class="track-hint" id="track-hint">
+                    Try the demonstration cases HL-2026-001 to HL-2026-007.
+                    They cover every status.
+                </small>
             </form>
         </header>
 
