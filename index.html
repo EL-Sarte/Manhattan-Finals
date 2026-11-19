@@ -61,11 +61,24 @@
                 <li><a href="report.html?category=Documentation"><i class="bi bi-file-earmark-text" aria-hidden="true"></i>Documentation</a></li>
                 <li><a href="report.html?category=Community%20members"><i class="bi bi-people" aria-hidden="true"></i>Community members</a></li>
             </ul>
-            <form class="lookup" id="report-lookup-form" role="search" aria-labelledby="lookup-title" novalidate>
+            <form class="lookup" id="report-lookup-form" role="search" aria-labelledby="lookup-title">
                 <h3 id="lookup-title">Already reported?</h3>
                 <label class="form-label" for="report-number">Reference number</label>
                 <p class="input-group mb-0">
-                    <input class="form-control" id="report-number" name="report-number" type="text" placeholder="e.g. HL-2026-001" autocomplete="off" required aria-describedby="report-lookup-feedback">
+
+                    <input
+                            class="form-control"
+                            id="report-number"
+                            name="report-number"
+                            type="text"
+                            placeholder="e.g. HL-2026-001"
+                            pattern="HL-[0-9]{4}-[0-9]{3}"
+                            title="Please enter a reference number in the format HL-2026-001."
+                            autocomplete="off"
+                            required
+                            aria-describedby="report-lookup-feedback"
+                    >
+
                     <button class="btn btn-forest" type="submit">Check</button>
                 </p>
                 <p class="lookup-feedback" id="report-lookup-feedback" role="status" hidden></p>

@@ -47,25 +47,46 @@
         </header>
 
         <section class="wrap report-layout" aria-labelledby="report-title">
-            <form id="report-form" aria-labelledby="report-title" novalidate>
+            <form id="report-form" aria-labelledby="report-title">
 
                 <fieldset class="form-card">
                     <legend data-step="1">About you</legend>
                     <p class="field full">
                         <label class="form-label" for="reporter-name">Full name <span aria-hidden="true">*</span></label>
-                        <input class="form-control" id="reporter-name" name="name" type="text" autocomplete="name" placeholder="Juan Dela Cruz" required>
-                        <span class="invalid-feedback">Enter your full name.</span>
+                        <input class="form-control" id="reporter-name" name="name" type="text" pattern="[A-Za-zÀ-ÿ]+(?:(?: |'|-)[A-Za-zÀ-ÿ]+)*" autocomplete="name" placeholder="Juan Dela Cruz" required>
+                        <span class="invalid-feedback">Please enter a valid name without numbers or special characters.</span>
                     </p>
                     <p class="field">
                         <label class="form-label" for="contact-number">Mobile number <span aria-hidden="true">*</span></label>
-                        <input class="form-control" id="contact-number" name="contact" type="tel" inputmode="tel" autocomplete="tel" placeholder="09171234567" required>
+
+                        <input
+                                class="form-control"
+                                id="contact-number"
+                                name="contact"
+                                type="tel"
+                                pattern="(09|\\+639)[0-9]{9}"
+                                inputmode="tel"
+                                autocomplete="tel"
+                                placeholder="09171234567"
+                                required
+                        >
+
                         <small class="form-text">Used for text messages only. We will not call you.</small>
-                        <span class="invalid-feedback">Enter a Philippine mobile number, like 09171234567.</span>
+                        <span class="invalid-feedback">Please enter a valid 11-digit mobile number starting with 09.</span>
                     </p>
                     <p class="field">
                         <label class="form-label" for="email-address">Email (needed if you choose email)</label>
-                        <input class="form-control" id="email-address" name="email" type="email" autocomplete="email" placeholder="juan@email.com">
-                        <span class="invalid-feedback">Enter an email like name@example.com. It is required when you choose email updates.</span>
+                        <input
+                                class="form-control"
+                                id="email-address"
+                                name="email"
+                                type="email"
+                                autocomplete="email"
+                                placeholder="example@email.com"
+                        >
+                        <span class="invalid-feedback">
+                                Please enter a valid email address.
+                        </span>
                     </p>
                     <p class="field full">
                         <label class="form-label" for="contact-method">How should we send updates? <span aria-hidden="true">*</span></label>

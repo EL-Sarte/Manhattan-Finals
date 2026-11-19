@@ -6,6 +6,7 @@ const wordCount = document.querySelector("#word-count");
 const observedInput = document.querySelector("#date-observed");
 const contactInput = document.querySelector("#contact-number");
 const emailInput = document.querySelector("#email-address");
+const nameInput = document.querySelector("#reporter-name");
 const methodSelect = document.querySelector("#contact-method");
 const photoInput = document.querySelector("#report-photo");
 const reportFormStatus = document.querySelector("#report-form-status");
@@ -49,8 +50,32 @@ reportForm.addEventListener("submit", (event) => {
   event.preventDefault();
   reportFormStatus.hidden = true;
 
+  // checking the full name
+  const cleanName = nameInput.value.trim();
+
+  nameInput.setCustomValidity(
+      /^[A-Za-zÀ-ÿ]+([ '-][A-Za-zÀ-ÿ]+)*$/.test(cleanName)
+          ? ""
+          : "Please enter a valid name."
+  );
+
+
+// checking the mobile number
   const cleanNumber = contactInput.value.replace(/[\s-]/g, "");
-  contactInput.setCustomValidity(/^(\+63|0)9\d{9}$/.test(cleanNumber) ? "" : "Invalid number");
+
+  contactInput.setCustomValidity(
+      /^(09\d{9}|\+639\d{9})$/.test(cleanNumber)
+          ? ""
+          : "Please enter a valid Philippine mobile number."
+  );
+
+  const email = emailInput.value.trim();
+
+  emailInput.setCustomValidity(
+      email === "" || emailInput.checkValidity()
+          ? ""
+          : "Please enter a valid email address."
+  );
 
   emailInput.required = methodSelect.value === "Email";
 
@@ -78,7 +103,7 @@ reportForm.addEventListener("submit", (event) => {
   const report = {
     reportNumber,
     status: "submitted",
-    name: document.querySelector("#reporter-name").value.trim(),
+    name: cleanName,
     contact: cleanNumber,
     email: emailInput.value.trim(),
     contactMethod: methodSelect.value,
@@ -107,3 +132,21 @@ reportForm.addEventListener("submit", (event) => {
 reportForm.addEventListener("input", (event) => {
   event.target.setCustomValidity("");
 });
+
+
+reportForm.addEventListener("input", (event) => {
+  event.target.setCustomValidity("");
+});
+
+
+// checking fields when the user leaves them
+reportForm.addEventListener("blur", (event) => {
+  if (event.target.matches("input, select, textarea")) {
+    const isValid = event.target.checkValidity();
+
+    event.target.classList.toggle("is-invalid", !isValid);
+    event.target.classList.toggle("is-valid", isValid);
+  }
+}, true);
+
+
