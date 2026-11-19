@@ -1,21 +1,158 @@
-.report-layout { display: grid; grid-template-columns: 1fr 340px; gap: 2rem; align-items: start; }
-.form-card { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; min-width: 0; margin-bottom: 1.25rem; padding: clamp(1.25rem, 3vw, 2rem); border: 1px solid var(--line); border-radius: 24px; background: #fff; }
-.form-card legend { display: flex; align-items: center; gap: 0.75rem; grid-column: 1 / -1; float: none; width: auto; margin-bottom: 0.25rem; font: 700 1.35rem var(--display-font); }
-.form-card legend::before { display: grid; width: 34px; aspect-ratio: 1; place-items: center; border-radius: 50%; background: var(--forest); color: #fff; font: 800 0.95rem var(--bs-body-font-family); content: attr(data-step); }
-.field { margin: 0; }
-.field.full { grid-column: 1 / -1; }
-.field .form-text { display: block; }
-.form-check.field { padding-left: 2rem; }
-.form-check-input { width: 1.4rem; height: 1.4rem; margin-left: -2rem; }
-.form-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin: 0; }
-.report-form-status { margin: 0; color: var(--clay-dark); font-weight: 800; }
-.report-form-status::before { content: "⚠ "; }
 
-.tips { position: sticky; top: 100px; padding: 1.5rem; border-radius: 24px; background: var(--forest); color: #fff; }
-.tips h2 { font-size: 1.3rem; }
-.tips ul { margin: 0 0 1.25rem; list-style: disc; padding-left: 1.25rem; }
-.tips li { margin-bottom: 0.5rem; }
-.tips .side-note { margin: 0; padding: 1rem; border: 2px dashed var(--sun); border-radius: 16px; }
+/* Main report layout */
+.report-layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    align-items: start;
+}
 
-@media (max-width: 991.98px) { .report-layout { grid-template-columns: 1fr; } .tips { position: static; } }
-@media (max-width: 575.98px) { .form-card { grid-template-columns: 1fr; } }
+
+/* Form section cards */
+.form-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+
+    min-width: 0;
+    margin-bottom: 1.5rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    background: #fff;
+}
+
+
+/* Section titles */
+.form-card legend {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    grid-column: 1 / -1;
+    float: none;
+    width: auto;
+    margin-bottom: 0.5rem;
+
+    font: 700 1.35rem var(--display-font);
+}
+
+/* Number beside each section title */
+.form-card legend::before {
+    display: grid;
+    width: 34px;
+    aspect-ratio: 1;
+    place-items: center;
+
+    border-radius: 50%;
+    background: var(--forest);
+    color: #fff;
+
+    font: 800 0.95rem var(--bs-body-font-family);
+    content: attr(data-step);
+}
+
+
+/* Form fields */
+.field {
+    margin: 0;
+}
+
+.field.full {
+    grid-column: 1 / -1;
+}
+
+.field .form-text {
+    display: block;
+}
+
+
+/* Checkboxes */
+.form-check.field {
+    padding-left: 2rem;
+}
+
+.form-check-input {
+    width: 1.4rem;
+    height: 1.4rem;
+    margin-left: -2rem;
+}
+
+
+/* Form buttons and status */
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+
+    margin: 0;
+}
+
+.report-form-status {
+    margin: 0;
+    color: var(--clay-dark);
+    font-weight: 800;
+}
+
+.report-form-status::before {
+    content: "⚠ ";
+}
+
+
+/* Tips sidebar */
+.tips {
+    position: sticky;
+    top: 100px;
+
+    padding: 1.5rem;
+    border-radius: 24px;
+
+    background: var(--forest);
+    color: #fff;
+}
+
+.tips h2 {
+    font-size: 1.3rem;
+}
+
+.tips ul {
+    margin: 0 0 1.25rem;
+    padding-left: 1.25rem;
+
+    list-style: disc;
+}
+
+.tips li {
+    margin-bottom: 0.5rem;
+}
+
+/* Emergency information */
+.tips .side-note {
+    margin: 0;
+    padding: 1rem;
+
+    border: 2px dashed var(--sun);
+    border-radius: 16px;
+}
+
+
+/* Tablet and smaller screens */
+@media (max-width: 991.98px) {
+    .report-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .tips {
+        position: static;
+    }
+}
+
+
+/* Mobile screens */
+@media (max-width: 575.98px) {
+    .form-card {
+        grid-template-columns: 1fr;
+    }
+}
