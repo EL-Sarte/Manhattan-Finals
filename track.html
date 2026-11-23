@@ -49,27 +49,25 @@
                 </label>
 
                 <div class="input-group input-group-lg">
-                    <input
-                            class="form-control"
-                            id="track-report-number"
-                            name="report-number"
-                            type="text"
-                            placeholder="e.g. HL-2026-001"
-                            autocomplete="off"
-                            pattern="HL-[0-9]{4}-[0-9]{3}"
-                            title="Format: HL-2026-001"
-                            required
-                            aria-describedby="track-hint"
-                    >
+                    <!-- no "pattern" or "title" here: the format rule lives in track.js only, so it can never disagree with it -->
+                    <input class="form-control"
+                           id="track-report-number"
+                           name="report-number"
+                           type="text"
+                           placeholder="e.g. HL-2026-001"
+                           autocomplete="off"
+                           autocapitalize="characters"
+                           spellcheck="false"
+                           required
+                           aria-describedby="track-error track-hint">
 
                     <button class="btn btn-clay" type="submit">
                         Find report
                     </button>
                 </div>
 
-                <span class="invalid-feedback">
-        Enter a valid reference number, like HL-2026-001.
-    </span>
+                <!-- the ONE place every problem with the reference number is shown (empty, wrong format, not found) -->
+                <p class="track-error" id="track-error" role="alert" hidden></p>
 
                 <small class="track-hint" id="track-hint">
                     Try the demonstration cases HL-2026-001 to HL-2026-007.

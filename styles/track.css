@@ -1,77 +1,57 @@
-
-/* Search section */
-.search-band {
+﻿.search-band {
     padding: 8.5rem 1rem 3rem;
-
     background: var(--forest);
     color: #fff;
     text-align: center;
 }
 
-.search-band .page-kicker {
-    color: var(--sun);
-}
+    .search-band .page-kicker {
+        color: var(--sun);
+    }
 
-.search-band form {
-    max-width: 640px;
-    margin: 0 auto;
-}
+    .search-band form {
+        max-width: 640px;
+        margin: 0 auto;
+    }
 
-.search-band .input-group {
-    margin: 0;
-}
+    .search-band .input-group {
+        margin: 0;
+    }
 
-.search-band .form-control {
-    padding-inline: 1.25rem;
-    border-radius: 999px 0 0 999px;
-}
+    .search-band .form-control {
+        padding-inline: 1.25rem;
+        border-radius: 999px 0 0 999px;
+    }
 
-.search-band .btn {
-    border-radius: 0 999px 999px 0;
-}
+    .search-band .btn {
+        border-radius: 0 999px 999px 0;
+    }
 
 .track-hint {
     display: block;
     margin-top: 0.75rem;
-
     color: rgb(255 255 255 / 85%);
 }
 
-
-/* Tracking notice */
 .track-notice {
     max-width: 720px;
     padding: 1rem 1.25rem;
-
     border-radius: 16px;
     background: #fff0cf;
     color: #5a3d05;
-
     font-weight: 700;
 }
 
-
-/* Main report layout */
 .track-report {
     display: grid;
     grid-template-columns: 5fr 7fr;
-    grid-template-areas:
-        "head details"
-        "progress details"
-        "progress outcome";
-
+    grid-template-areas: "head details" "progress details" "progress outcome";
     gap: 1.25rem;
     align-items: start;
 }
 
-
-/* Report cards */
-.ticket-head,
-.track-progress,
-.details,
-.track-verdict {
+.ticket-head, .track-progress, .details, .track-verdict {
     padding: 1.5rem;
-
     border: 1px solid var(--line);
     border-radius: 24px;
     background: #fff;
@@ -86,11 +66,10 @@
 }
 
 .details {
-    display: grid;
     grid-area: details;
+    display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1.25rem;
-
     margin: 0;
     padding: clamp(1.25rem, 3vw, 2rem);
 }
@@ -100,11 +79,8 @@
     background: var(--sage);
 }
 
-
-/* Report heading and status */
 .track-category {
     margin: 0 0 0.25rem;
-
     color: var(--clay-dark);
     font-size: 0.85rem;
     font-weight: 800;
@@ -115,7 +91,6 @@
 .track-report-number {
     margin: 0 0 0.75rem;
     overflow-wrap: anywhere;
-
     font-size: 1.7rem;
 }
 
@@ -123,8 +98,6 @@
     margin: 0;
 }
 
-
-/* Report details */
 .details dt {
     color: var(--muted);
     font-size: 0.8rem;
@@ -136,7 +109,6 @@
 .details dd {
     margin: 0 0 0.25rem;
     overflow-wrap: anywhere;
-
     font-weight: 500;
 }
 
@@ -144,8 +116,6 @@
     grid-column: 1 / -1;
 }
 
-
-/* Progress section */
 .track-progress-title {
     margin-bottom: 1.25rem;
     font-size: 1.2rem;
@@ -155,49 +125,38 @@
     margin: 0;
 }
 
-
-/* Timeline steps */
 .track-step {
     position: relative;
     display: grid;
     grid-template-columns: 38px 1fr;
     column-gap: 1rem;
-
     padding-bottom: 1.4rem;
 }
 
-/* Timeline connecting line */
-.track-step:not(:last-child)::before {
-    position: absolute;
-    top: 38px;
-    bottom: 0;
-    left: 18px;
+    .track-step:not(:last-child)::before {
+        position: absolute;
+        top: 38px;
+        bottom: 0;
+        left: 18px;
+        width: 2px;
+        background: var(--sage-2);
+        content: "";
+    }
 
-    width: 2px;
-    background: var(--sage-2);
+    .track-step.is-complete:not(:last-child)::before {
+        background: var(--forest);
+    }
 
-    content: "";
-}
-
-.track-step.is-complete:not(:last-child)::before {
-    background: var(--forest);
-}
-
-
-/* Timeline markers */
 .track-step-marker {
-    display: grid;
     grid-row: span 2;
-
+    display: grid;
     width: 38px;
     aspect-ratio: 1;
     place-items: center;
-
     border: 2px solid var(--muted);
     border-radius: 50%;
     background: #fff;
     color: var(--muted);
-
     font-weight: 800;
 }
 
@@ -211,30 +170,22 @@
     border-color: var(--clay-dark);
     background: var(--clay-dark);
     color: #fff;
-
     box-shadow: 0 0 0 4px #f9d5c6;
 }
 
-
-/* Timeline text */
 .track-step-title {
     margin: 0.35rem 0 0.15rem;
-
     font: 800 1.05rem var(--bs-body-font-family);
 }
 
 .track-step-copy {
     margin: 0;
-
     color: var(--muted);
     font-size: 0.95rem;
 }
 
-
-/* Final status / outcome */
 .track-verdict-kicker {
     margin: 0 0 0.5rem;
-
     color: var(--forest);
     font-size: 0.8rem;
     font-weight: 800;
@@ -250,32 +201,41 @@
     margin: 0;
 }
 
-
-/* Demo information */
 .track-demo-note {
     margin-top: 1.5rem;
-
     color: var(--muted);
     font-size: 0.9rem;
 }
 
-
-/* Tablet and smaller screens */
 @media (max-width: 991.98px) {
     .track-report {
         grid-template-columns: 1fr;
-        grid-template-areas:
-            "head"
-            "progress"
-            "details"
-            "outcome";
+        grid-template-areas: "head" "progress" "details" "outcome";
     }
 }
 
-
-/* Mobile screens */
 @media (max-width: 575.98px) {
     .details {
         grid-template-columns: 1fr;
     }
+}
+
+.track-error {
+    display: inline-block;
+    margin: 0.75rem 0 0;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    background: #fbe3dc;
+    color: #8a2a1a;
+    font-weight: 700;
+}
+
+    .track-error::before {
+        content: "⚠ ";
+    }
+
+.search-band .form-control.is-invalid {
+    border-color: var(--sun);
+    background-image: none;
+    box-shadow: 0 0 0 0.25rem rgb(246 196 83 / 45%);
 }
